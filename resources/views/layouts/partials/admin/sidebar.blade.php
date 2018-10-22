@@ -1,17 +1,50 @@
-@extends('')
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <li class="sidebar-item text-center">
+                    <a href="{{route('admin.task.create')}}" class="btn btn-primary btn-success">New Task</a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.dashboard.index')}}" aria-expanded="false">
+                        <i class="mdi mdi-av-timer"></i>
+                        <span class="hide-menu">Dashboard </span>
+                    </a>
+                </li>
 
-@section('title','')
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.task.index')}}" aria-expanded="false">
+                        <i class="mdi mdi-av-timer"></i>
+                        <span class="hide-menu">Task </span>
+                    </a>
+                </li>
 
-@push('css')
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.client.index')}}" aria-expanded="false">
+                        <i class="mdi mdi-av-timer"></i>
+                        <span class="hide-menu">Client </span>
+                    </a>
+                </li>
 
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.user.index')}}" aria-expanded="false">
+                        <i class="mdi mdi-av-timer"></i>
+                        <span class="hide-menu">User </span>
+                    </a>
+                </li>
 
-@endpush
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.system.setting')}}" aria-expanded="false">
+                        <i class="mdi mdi-av-timer"></i>
+                        <span class="hide-menu">System Setting </span>
+                    </a>
+                </li>
 
-
-@section('content')
-@endsection
-
-
-@push('script')
-
-@endpush
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>
