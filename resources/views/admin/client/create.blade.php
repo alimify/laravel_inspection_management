@@ -12,11 +12,11 @@
     <div class="row">
         <div class="col-12">
             <div class="card card-body">
-                <h4 class="card-title">Client form</h4>
-                <h5 class="card-subtitle">fill the form with exact information</h5>
+                <h4 class="card-title">New Client</h4>
                 <div class="row">
                     <div class="col-sm-12 col-xs-12">
-                        <form>
+                        <form action="{{route('admin.client.store')}}" method="post">
+                            @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" name="name">
@@ -36,11 +36,11 @@
 
                             <div class="form-group">
                                 <label for="address">Description</label>
-                                <textarea class="form-control" rows="2" name="description"></textarea>
+                                <textarea class="form-control" rows="2" name="descriptions"></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-success m-r-10">Submit</button>
-                            <a href="{{route('admin.client.index')}}" class="btn btn-dark">Cancel</a>
+                            <a href="{{route('admin.client.index')}}" class="btn btn-dark">Back</a>
                         </form>
                     </div>
                 </div>

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Client;
+use App\Models\Task;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +17,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return response()->view('admin.task.index');
+        $tasks = Task::all();
+
+        return response()->view('admin.task.index',compact('tasks'));
     }
 
     /**
@@ -24,7 +29,10 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        $clients = Client::all();
+        $users    = User::where('role_id',2)->get();
+
+      return response()->view('admin.task.create',compact('clients','users'));
     }
 
     /**
@@ -35,7 +43,21 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required',
+            'description' => 'required',
+            'client'      => 'required',
+            'staff'       => 'required'
+        ]);
+
+        $task = new Task();
+        $task->title = $request->title;
+        $task->description = $request->description;
+        $task->client_id = $request->client;
+        $task->user_id   = $request->staff;
+        $task->save();
+
+        return redirect()->route('admin.task.index')->with('status','Task Successfully Submitted..');
     }
 
     /**
@@ -46,7 +68,9 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        $task = Task::find($id);
+
+        return response()->view('admin.task.show',compact('task'));
     }
 
     /**
@@ -57,7 +81,11 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users = User::where('role_id',2)->get();
+        $clients = Client::all();
+        $task = Task::find($id);
+
+      return response()->view('admin.task.edit',compact('users','clients','task'));
     }
 
     /**
@@ -69,7 +97,21 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required',
+            'description' => 'required',
+            'client'      => 'required',
+            'staff'       => 'required'
+        ]);
+
+        $task = Task::find($id);
+        $task->title = $request->title;
+        $task->description = $request->description;
+        $task->client_id = $request->client;
+        $task->user_id   = $request->staff;
+        $task->save();
+
+        return redirect()->back()->with('status','Task Successfully Updated..');
     }
 
     /**

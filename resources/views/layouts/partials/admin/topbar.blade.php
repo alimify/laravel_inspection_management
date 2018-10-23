@@ -145,7 +145,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="../../assets/images/users/2.jpg" alt="user" class="rounded-circle" width="40">
-                        <span class="m-l-5 font-medium d-none d-sm-inline-block">Jonathan Doe <i class="mdi mdi-chevron-down"></i></span>
+                        <span class="m-l-5 font-medium d-none d-sm-inline-block">{{Auth::user()->name}} <i class="mdi mdi-chevron-down"></i></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
                                 <span class="with-arrow">
@@ -156,8 +156,8 @@
                                 <img src="../../assets/images/users/2.jpg" alt="user" class="rounded-circle" width="60">
                             </div>
                             <div class="m-l-10">
-                                <h4 class="mb-0">Jonathan Doe</h4>
-                                <p class=" mb-0">jon@gmail.com</p>
+                                <h4 class="mb-0">{{Auth::user()->name}}</h4>
+                                <p class=" mb-0">{{Auth::user()->email}}</p>
                             </div>
                         </div>
                         <a class="dropdown-item" href="javascript:void(0)">

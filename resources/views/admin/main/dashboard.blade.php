@@ -3,12 +3,13 @@
 @section('title','Dashboard')
 
 @push('css')
-
-
+    <!-- Custom CSS -->
+    <link href="{{asset('backend/'.'assets/libs/chartist/dist/chartist.min.css')}}" rel="stylesheet">
+    <link href="{{asset('backend/'.'assets/extra-libs/c3/c3.min.css')}}" rel="stylesheet">
 @endpush
 
 
-@section('content')
+@section('contents')
 
         <!-- ============================================================== -->
         <!-- Sales chart -->
@@ -20,7 +21,7 @@
                         <div class="row align-items-center">
                             <div class="col-7">
                                 <i class="mdi mdi-emoticon font-20 text-info"></i>
-                                <p class="font-16 m-b-5">New Clients</p>
+                                <p class="font-16 m-b-5">Task</p>
                             </div>
                             <div class="col-5">
                                 <h1 class="font-light text-right mb-0">23</h1>
@@ -35,7 +36,7 @@
                         <div class="row align-items-center">
                             <div class="col-7">
                                 <i class="mdi mdi-image font-20 text-success"></i>
-                                <p class="font-16 m-b-5">New Projects</p>
+                                <p class="font-16 m-b-5">Clients</p>
                             </div>
                             <div class="col-5">
                                 <h1 class="font-light text-right mb-0">169</h1>
@@ -50,7 +51,7 @@
                         <div class="row align-items-center">
                             <div class="col-7">
                                 <i class="mdi mdi-currency-eur font-20 text-purple"></i>
-                                <p class="font-16 m-b-5">New Invoices</p>
+                                <p class="font-16 m-b-5">Staff</p>
                             </div>
                             <div class="col-5">
                                 <h1 class="font-light text-right mb-0">157</h1>
@@ -65,7 +66,7 @@
                         <div class="row align-items-center">
                             <div class="col-7">
                                 <i class="mdi mdi-poll font-20 text-danger"></i>
-                                <p class="font-16 m-b-5">New Sales</p>
+                                <p class="font-16 m-b-5">Demo</p>
                             </div>
                             <div class="col-5">
                                 <h1 class="font-light text-right mb-0">236</h1>
@@ -87,7 +88,7 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div>
-                                <h4 class="card-title">Sales Ratio</h4>
+                                <h4 class="card-title">Demo Ratio</h4>
                             </div>
                             <div class="ml-auto">
                                 <div class="dl m-b-10">
@@ -424,5 +425,12 @@
 
 
 @push('script')
-
+    <!--This page JavaScript -->
+    <!--chartis chart-->
+    <script src="{{asset('backend/'.'assets/libs/chartist/dist/chartist.min.js')}}"></script>
+    <script src="{{asset('backend/'.'assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js')}}"></script>
+    <!--c3 charts -->
+    <script src="{{asset('backend/'.'assets/extra-libs/c3/d3.min.js')}}"></script>
+    <script src="{{asset('backend/'.'assets/extra-libs/c3/c3.min.js')}}"></script>
+    <script src="{{asset('backend/'.'dist/js/pages/dashboards/dashboard3.js')}}"></script>
 @endpush

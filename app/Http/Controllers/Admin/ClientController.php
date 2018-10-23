@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return response()->view('admin.client.index');
+        $clients = Client::all();
+
+        return response()->view('admin.client.index',compact('clients'));
     }
 
     /**
@@ -35,7 +38,21 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'                    => 'required|max:50',
+            'email'                   => 'email',
+            'descriptions'            => 'max:500'
+        ]);
+
+        $client = new Client();
+        $client->name                 = $request->name;
+        $client->phone                = $request->phone;
+        $client->email                = $request->email;
+        $client->address              = $request->address;
+        $client->descriptions         = $request->descriptions;
+        $client->save();
+
+        return redirect()->route('admin.client.index')->with('status','New Client Added..');
     }
 
     /**
@@ -57,7 +74,9 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $client = Client::find($id);
+
+      return response()->view('admin.client.edit',compact('client'));
     }
 
     /**
@@ -69,7 +88,21 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name'                   => 'required|max:50',
+            'email'                  => 'email',
+            'descriptions'           => 'max:500'
+        ]);
+
+        $client = Client::find($id);
+        $client->name               = $request->name;
+        $client->email              = $request->email;
+        $client->phone              = $request->phone;
+        $client->address            = $request->address;
+        $client->descriptions       = $request->descriptions;
+        $client->save();
+
+        return redirect()->back()->with('status','Client Data Successfully Updated..');
     }
 
     /**
@@ -80,6 +113,8 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $client = Client::find($id);
+        $client->delete();
+        return redirect()->back()->with('status','Client Successfully Deleted.');
     }
 }

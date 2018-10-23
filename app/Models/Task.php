@@ -6,5 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    //
+    public function Client(){
+        return $this->belongsTo('App\Models\Client');
+    }
+
+    public function User(){
+        return $this->belongsTo('App\User');
+    }
+
+    public function Inspection(){
+        return $this->hasOne('App\Models\Inspection','id','inspection_id');
+    }
 }

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+   return redirect()->route('login');
 });
 
 Auth::routes();
@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::group(['as' => 'admin.','prefix' => 'admin','namespace' => 'Admin','middleware' => []],function() {
+Route::group(['as' => 'admin.','prefix' => 'admin','namespace' => 'Admin','middleware' => ['auth','admin']],function() {
 
     Route::resource('dashboard','DashboardController');
     Route::resource('client','ClientController');

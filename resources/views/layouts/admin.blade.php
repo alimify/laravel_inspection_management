@@ -11,9 +11,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
     <title>@yield('title')</title>
-    <!-- Custom CSS -->
-    <link href="{{asset('backend/'.'assets/libs/chartist/dist/chartist.min.css')}}" rel="stylesheet">
-    <link href="{{asset('backend/'.'assets/extra-libs/c3/c3.min.css')}}" rel="stylesheet">
+    <link href="{{asset('backend/'.'assets/libs/toastr/build/toastr.min.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{asset('backend/'.'dist/css/style.css')}}" rel="stylesheet">
     @stack('css')
@@ -85,10 +83,10 @@
         <!-- ============================================================== -->
         <!-- Container fluid  -->
         <!-- ============================================================== -->
-        <div class="container-fluid">
+       <div class="container-fluid">
          @yield('content')
          <!-- ============================================================== -->
-        </div>
+       <!-- </div> -->
         <!-- ============================================================== -->
         <!-- End Container fluid  -->
         <!-- ============================================================== -->
@@ -135,14 +133,8 @@
 <script src="{{asset('backend/'.'dist/js/sidebarmenu.js')}}"></script>
 <!--Custom JavaScript -->
 <script src="{{asset('backend/'.'dist/js/custom.js')}}"></script>
-<!--This page JavaScript -->
-<!--chartis chart-->
-<script src="{{asset('backend/'.'assets/libs/chartist/dist/chartist.min.js')}}"></script>
-<script src="{{asset('backend/'.'assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js')}}"></script>
-<!--c3 charts -->
-<script src="{{asset('backend/'.'assets/extra-libs/c3/d3.min.js')}}"></script>
-<script src="{{asset('backend/'.'assets/extra-libs/c3/c3.min.js')}}"></script>
-<script src="{{asset('backend/'.'dist/js/pages/dashboards/dashboard3.js')}}"></script>
+<script src="{{asset('backend/'.'assets/libs/toastr/build/toastr.min.js')}}"></script>
+@include('layouts.partials.admin.notice')
 @stack('script')
 </body>
 
