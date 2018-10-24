@@ -134,6 +134,25 @@
 <!--Custom JavaScript -->
 <script src="{{asset('backend/'.'dist/js/custom.js')}}"></script>
 <script src="{{asset('backend/'.'assets/libs/toastr/build/toastr.min.js')}}"></script>
+    <script>
+        $("#logout-link").click(function () {
+            let logoutForm = document.createElement('form'),
+                logoutURL = `{{route('logout')}}`,
+                csrfInput = document.createElement('input'),
+                methodInput = document.createElement('input')
+            logoutForm.style.display = 'none';
+            logoutForm.method = 'POST'
+            logoutForm.action = logoutURL
+            csrfInput.name = `_token`
+            csrfInput.value = `{{csrf_token()}}`
+            methodInput.name = `_method`
+            methodInput.value = `POST`
+            logoutForm.appendChild(csrfInput)
+            logoutForm.appendChild(methodInput)
+            document.body.appendChild(logoutForm)
+            logoutForm.submit()
+        })
+    </script>
 @include('layouts.partials.admin.notice')
 @stack('script')
 </body>

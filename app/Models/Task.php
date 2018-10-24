@@ -14,6 +14,10 @@ class Task extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function Status(){
+        return $this->belongsTo('App\Models\Status');
+    }
+
     public function Inspection(){
         return $this->hasOne('App\Models\Inspection','id','inspection_id');
     }

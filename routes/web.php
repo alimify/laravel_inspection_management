@@ -30,3 +30,14 @@ Route::group(['as' => 'admin.','prefix' => 'admin','namespace' => 'Admin','middl
     Route::post('system/setting','SystemController@update')->name('system.setting.update');
 
 });
+
+
+
+Route::group(['as' => 'staff.','prefix' => 'staff','namespace' => 'Staff','middleware' => ['auth','staff']],function() {
+
+    Route::get('dashboard','DashboardController@index')->name('dashboard.index');
+    Route::get('task','TaskController@index')->name('task.index');
+    Route::get('task/{task}','TaskController@show')->name('task.show');
+    Route::get('/inspection/submit','InspectionController@submit')->name('inspection.submit');
+
+});
