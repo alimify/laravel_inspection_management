@@ -65,7 +65,7 @@ class InspectionController extends Controller
         $task->status_id = 2;
         $task->save();
 
-        $this->sentToAdmin('staff_task_submitted',route('staff.task.show',$task->id),'Task Submitted',$task->title);
+        $this->sentToAdmin('staff_task_submitted',route('admin.task.show',$task->id),'Task Submitted',$task->title);
 
         return redirect()->back()->with('status','Form Submitted Successfully.');
     }
