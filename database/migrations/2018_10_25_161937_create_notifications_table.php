@@ -17,9 +17,9 @@ class CreateNotificationsTable extends Migration
             $table->increments('id');
             $table->string('type');
             $table->integer('user_id');
-            $table->string('route');
-            $table->string('title');
-            $table->text('description');
+            $table->string('route')->nullable()->default(null);
+            $table->string('title')->nullable()->default(null);
+            $table->text('description')->nullable()->default(null);
             $table->boolean('read')->default(false);
             $table->timestamps();
         });

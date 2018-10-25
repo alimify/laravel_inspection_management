@@ -65,7 +65,7 @@ class TaskController extends Controller
 
 
 
-        $this->sendToStaff('admin_task_send',$task->user_id,route('staff.task.show',$task->id),'New Task',$request->title);
+        $this->sendToStaff('admin_task_send',$task->user_id,route('staff.task.show',$task->id),'New Task',$task->title);
 
         return redirect()->route('admin.task.index')->with('status','Task Successfully Submitted..');
     }
@@ -128,7 +128,7 @@ class TaskController extends Controller
 
 
 if($task->status_id  == 1) {
-    $this->sendToStaff('admin_task_update',$task->user_id,route('staff.task.show', $task->id),'Task Updated',$request->title);
+    $this->sendToStaff('admin_task_update',$task->user_id,route('staff.task.show', $task->id),'Task Updated',$task->title);
 }
 
         return redirect()->back()->with('status','Task Successfully Updated..');
