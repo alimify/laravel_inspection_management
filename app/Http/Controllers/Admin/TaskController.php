@@ -65,7 +65,7 @@ class TaskController extends Controller
 
 
 
-        $this->sendToStaff('admin_task_send',$task->user_id,'<a href="'.route('staff.task.show',$task->id).'">New Task : '.$request->title.'</a>');
+        $this->sendToStaff('admin_task_send',$task->user_id,route('staff.task.show',$task->id),'New Task',$request->title);
 
         return redirect()->route('admin.task.index')->with('status','Task Successfully Submitted..');
     }
@@ -128,7 +128,7 @@ class TaskController extends Controller
 
 
 if($task->status_id  == 1) {
-    $this->sendToStaff('admin_task_update',$task->user_id,'<a href="' . route('staff.task.show', $task->id) . '">Task Updated: ' . $request->title . '</a>');
+    $this->sendToStaff('admin_task_update',$task->user_id,route('staff.task.show', $task->id),'Task Updated',$request->title);
 }
 
         return redirect()->back()->with('status','Task Successfully Updated..');
@@ -146,11 +146,13 @@ if($task->status_id  == 1) {
     }
 
 
-    private function sendToStaff($type,$staff,$data){
+    private function sendToStaff($type,$staff,$route,$title,$description){
         $notification = new Notification();
         $notification->type = $type;
         $notification->user_id = $staff;
-        $notification->data = $data;
+        $notification->route = $route;
+        $notification->title = $title;
+        $notification->description = $description;
         $notification->save();
     }
 }

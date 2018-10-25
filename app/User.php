@@ -31,4 +31,8 @@ class User extends Authenticatable
     public function Role(){
         return $this->belongsTo('App\Role');
     }
+
+    public function Notification(){
+        return $this->hasMany('App\Models\Notification')->where('read',false);
+    }
 }

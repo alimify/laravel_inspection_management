@@ -65,7 +65,7 @@ class InspectionController extends Controller
         $task->status_id = 2;
         $task->save();
 
-        $this->sentToAdmin('staff_task_submitted','<a href="'.route('staff.task.show',$task->id).'">Task Submitted : '.$request->title.'</a>');
+        $this->sentToAdmin('staff_task_submitted',route('staff.task.show',$task->id),'Task Submitted',$request->title);
 
         return redirect()->back()->with('status','Form Submitted Successfully.');
     }
@@ -79,14 +79,16 @@ class InspectionController extends Controller
     }
 
 
-    public function sentToAdmin($type,$data){
+    public function sentToAdmin($type,$route,$title,$description){
 
         foreach (Role::find(1)->Users as $user){
 
             $notification = new Notification();
             $notification->type = $type;
             $notification->user_id = $user->id;
-            $notification->data = $data;
+            $notification->route = $route;
+            $notification->title = $title;
+            $notification->description = $description;
             $notification->save();
         }
      }
