@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInspectionsTable extends Migration
+class CreateNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateInspectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('inspections', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('task_id');
+            $table->string('type');
+            $table->integer('user_id');
             $table->text('data');
-            $table->boolean('status')->default(true);
+            $table->boolean('read')->default(false);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateInspectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inspections');
+        Schema::dropIfExists('notifications');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use App\Models\Client;
+use App\Models\Notification;
 use App\Models\Task;
 use App\User;
 use Illuminate\Http\Request;
@@ -60,6 +61,14 @@ class TaskController extends Controller
         $task->category_id = $request->category;
         $task->user_id   = $request->staff;
         $task->save();
+
+
+        $notification = new Notification();
+        $notification->type = 'admin_task_send';
+        $notification->user_id = $request->staff;
+        $notification->data = '<a href="'.route('staff.task.show',$task->id).'">New Task : '.$request->title.'</a>';
+        $notification->save();
+
 
         return redirect()->route('admin.task.index')->with('status','Task Successfully Submitted..');
     }

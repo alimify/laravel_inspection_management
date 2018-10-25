@@ -5,7 +5,9 @@
                 <h4 class="card-title">Report</h4>
                 <h6 class="card-subtitle"></h6>
                 <div class="r-separator">
-                    <form action="" method="POST">
+                    <form action="{{route('staff.inspection.formOne',$task->id)}}" method="POST">
+                        @csrf
+                        @method('PUT')
                         <div class="border p-3">
                             <h4>STRUCTURE:</h4>
 
@@ -13,8 +15,8 @@
                             <div class="form-group pb-2">
                                 <label for="title">CEILINGS</label>
                                 <h6>EVIDENCE OF WATER INTRUSION/DAMAGE?</h6>
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> Yes
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> No
+                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling" value="1"> Yes
+                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling" value="2"> No
                                 <div class="row">
                                     <label for="ceiling_attachment">Attachment</label>
                                     <input class="form-control-file" name="ceiling_attachment" type="file">
@@ -25,8 +27,8 @@
                             <div class="form-group pb-2">
                                 <label for="title">WALLS</label>
                                 <h6>EVIDENCE OF WATER INTRUSION/DAMAGE?</h6>
-                                <input type="radio" class="form-check form-check-inline ml-2" id="walls" name="walls"> Yes
-                                <input type="radio" class="form-check form-check-inline ml-2" id="walls" name="walls"> No
+                                <input type="radio" class="form-check form-check-inline ml-2" id="walls" name="walls" value="1"> Yes
+                                <input type="radio" class="form-check form-check-inline ml-2" id="walls" name="walls" value="2"> No
                                 <div class="row">
                                     <label for="ceiling_attachment">Attachment</label>
                                     <input class="form-control-file" name="walls_attachment" type="file">
@@ -36,8 +38,8 @@
                             <div class="form-group pb-2">
                                 <label for="title">FLOORS</label>
                                 <h6>EVIDENCE OF WATER INTRUSION/DAMAGE?</h6>
-                                <input type="radio" class="form-check form-check-inline ml-2" id="floors" name="floors"> Yes
-                                <input type="radio" class="form-check form-check-inline ml-2" id="floors" name="floors"> No
+                                <input type="radio" class="form-check form-check-inline ml-2" id="floors" name="floors" value="1"> Yes
+                                <input type="radio" class="form-check form-check-inline ml-2" id="floors" name="floors" value="2"> No
                                 <div class="row">
                                     <label for="ceiling_attachment">Attachment</label>
                                     <input class="form-control-file" name="floors_attachment" type="file">
@@ -48,8 +50,8 @@
                             <div class="form-group pb-2">
                                 <label for="title">BASEBOARDS</label>
                                 <h6>EVIDENCE OF WATER INTRUSION/DAMAGE?</h6>
-                                <input type="radio" class="form-check form-check-inline ml-2" id="baseboards" name="baseboards"> Yes
-                                <input type="radio" class="form-check form-check-inline ml-2" id="baseboads" name="baseboards"> No
+                                <input type="radio" class="form-check form-check-inline ml-2" id="baseboard" name="baseboard" value="1"> Yes
+                                <input type="radio" class="form-check form-check-inline ml-2" id="baseboard" name="baseboard" value="2"> No
                                 <div class="row">
                                     <label for="ceiling_attachment">Attachment</label>
                                     <input class="form-control-file" name="baseboards_attachment" type="file">
@@ -59,39 +61,26 @@
 
 
                             <div class="form-group pb-2">
-                                <label for="title">CEILINGS</label>
-                                <h6>EVIDENCE OF WATER INTRUSION/DAMAGE?</h6>
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> Yes
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> No
-                                <div class="row">
-                                    <label for="ceiling_attachment">Attachment</label>
-                                    <input class="form-control-file" name="ceiling_attachment" type="file">
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-group pb-2">
                                 <label for="title">WINDOWS/SLINDING GLASS DOORS:</label>
                                 <h6>DAMAGED?</h6>
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> Yes
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> No
+                                <input type="radio" class="form-check form-check-inline ml-2" id="windows_damaged" name="windows_damaged" value="1"> Yes
+                                <input type="radio" class="form-check form-check-inline ml-2" id="windows_damaged" name="windows_damaged" value="2"> No
                                 <div class="row mt-2 mb-2">
                                     <small>Attachment</small>
                                     <input class="form-control-file" name="ceiling_attachment" type="file">
                                 </div>
 
                                 <h6>SECURED?</h6>
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> Yes
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> No
+                                <input type="radio" class="form-check form-check-inline ml-2" id="windows_secured" name="windows_secured" value="1"> Yes
+                                <input type="radio" class="form-check form-check-inline ml-2" id="windows_secured" name="windows_secured" value="2"> No
                                 <div class="row mt-2 mb-2">
                                     <small>Attachment</small>
                                     <input class="form-control-file" name="ceiling_attachment" type="file">
                                 </div>
 
                                 <h6>EVIDENCE OF WATER INTRUSION?</h6>
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> Yes
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> No
+                                <input type="radio" class="form-check form-check-inline ml-2" id="windows_evidence" name="windows_evidence" value="1"> Yes
+                                <input type="radio" class="form-check form-check-inline ml-2" id="windows_evidence" name="windows_evidence" value="2"> No
                                 <div class="row mt-2 mb-2">
                                     <small>Attachment</small>
                                     <input class="form-control-file" name="ceiling_attachment" type="file">
@@ -108,8 +97,8 @@
 
                             <div class="form-group pb-2">
                                 <label for="title" class="d-block">TOILETS LEAKING?</label>
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> Yes
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> No
+                                <input type="radio" class="form-check form-check-inline ml-2" id="toilets_leak" name="toilets_leak" value="1"> Yes
+                                <input type="radio" class="form-check form-check-inline ml-2" id="toilets_leak" name="toilets_leak" value="2"> No
                                 <div class="row">
                                     <label for="ceiling_attachment">Attachment</label>
                                     <input class="form-control-file" name="ceiling_attachment" type="file">
@@ -118,8 +107,8 @@
 
                             <div class="form-group pb-2">
                                 <label for="title" class="d-block">FAUCETS DRIPPING WATER?</label>
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> Yes
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> No
+                                <input type="radio" class="form-check form-check-inline ml-2" id="faucets_dripping_water" name="faucets_dripping_water" value="1"> Yes
+                                <input type="radio" class="form-check form-check-inline ml-2" id="faucets_dripping_water" name="faucets_dripping_water" value="2"> No
                                 <div class="row">
                                     <label for="ceiling_attachment">Attachment</label>
                                     <input class="form-control-file" name="ceiling_attachment" type="file">
@@ -129,8 +118,8 @@
 
                             <div class="form-group pb-2">
                                 <label for="title" class="d-block">EVIDENCE OF ANY LEAKS UNDER SINKS?</label>
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> Yes
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> No
+                                <input type="radio" class="form-check form-check-inline ml-2" id="evidence_leak_under_sink" name="evidence_leak_under_sink" value="1"> Yes
+                                <input type="radio" class="form-check form-check-inline ml-2" id="evidence_leak_under_sink" name="evidence_leak_under_sink" value="2"> No
                                 <div class="row">
                                     <label for="ceiling_attachment">Attachment</label>
                                     <input class="form-control-file" name="ceiling_attachment" type="file">
@@ -147,9 +136,9 @@
 
 
                             <div class="form-group pb-2">
-                                <label for="title" class="d-block">TOILETS LEAKING?</label>
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> Yes
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> No
+                                <label for="title" class="d-block">DOES UNIT APPEAR TO BE OPERATIONAL?</label>
+                                <input type="radio" class="form-check form-check-inline ml-2" id="unit_operational" name="unit_operational" value="1"> Yes
+                                <input type="radio" class="form-check form-check-inline ml-2" id="unit_operational" name="unit_operational" value="no"> No
                                 <div class="row">
                                     <label for="ceiling_attachment">Attachment</label>
                                     <input class="form-control-file" name="ceiling_attachment" type="file">
@@ -157,9 +146,9 @@
                             </div>
 
                             <div class="form-group pb-2">
-                                <label for="title" class="d-block">FAUCETS DRIPPING WATER?</label>
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> Yes
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> No
+                                <label for="title" class="d-block">EVIDENCE OF LEAKING?</label>
+                                <input type="radio" class="form-check form-check-inline ml-2" id="hvac_evidence" name="hvac_evidence" value="1"> Yes
+                                <input type="radio" class="form-check form-check-inline ml-2" id="hvac_evidence" name="hvac_evidence" value="2"> No
                                 <div class="row">
                                     <label for="ceiling_attachment">Attachment</label>
                                     <input class="form-control-file" name="ceiling_attachment" type="file">
@@ -168,14 +157,21 @@
 
 
                             <div class="form-group pb-2">
-                                <label for="title" class="d-block">EVIDENCE OF ANY LEAKS UNDER SINKS?</label>
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> Yes
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> No
+                                <label for="title" class="d-block">DOES THE FILTER NEED TO BE CHANGED?</label>
+                                <input type="radio" class="form-check form-check-inline ml-2" id="hvac_filter_change_need" name="hvac_filter_change_need" value="1"> Yes
+                                <input type="radio" class="form-check form-check-inline ml-2" id="hvac_filter_change_need" name="hvac_filter_change_need" value="1"> No
                                 <div class="row">
                                     <label for="ceiling_attachment">Attachment</label>
                                     <input class="form-control-file" name="ceiling_attachment" type="file">
                                 </div>
                             </div>
+
+
+                            <div class="form-group pb-2">
+                                <label for="title" class="d-block d-inline">THERMOSTAT READING AT THE TIME OF INSPECTION</label>
+                                <input type="text" size="15" class="form-check form-check-inline ml-2" id="thermostat_degree_reading" name="thermostat_degree_reading"> DEGREES
+                            </div>
+
 
                         </div>
 
@@ -184,9 +180,9 @@
                             <h4>ELECTRICAL:</h4>
 
                             <div class="form-group pb-2">
-                                <label for="title" class="d-block">TOILETS LEAKING?</label>
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> Yes
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> No
+                                <label for="title" class="d-block">LIGHT SWITCHES: ARE THEY WORKING?</label>
+                                <input type="radio" class="form-check form-check-inline ml-2" id="electrical_light_switch" name="electrical_light_switch" value="1"> Yes
+                                <input type="radio" class="form-check form-check-inline ml-2" id="electrical_light_switch" name="electrical_light_switch" value="2"> No
                                 <div class="row">
                                     <label for="ceiling_attachment">Attachment</label>
                                     <input class="form-control-file" name="ceiling_attachment" type="file">
@@ -202,7 +198,7 @@
 
                             <div class="form-group pb-2">
                                 <label for="title" class="d-block">SMOKE DETECTOR</label>
-                                <textarea class="form-control" rows="1" placeholder="WHAT KIND OF INSPECTION HERE ?"></textarea>
+                                <textarea class="form-control" rows="1" placeholder="WHAT KIND OF INSPECTION HERE ?" name="smoke_detector"></textarea>
                             </div>
                         </div>
 
@@ -212,22 +208,22 @@
                             <h4>MAJOR APPLIIANCES:</h4>
                             <div class="form-group pb-2">
                                 <label for="title" class="d-block">REFIGERATOR</label>
-                                <textarea class="form-control" rows="1" placeholder="WHAT KIND OF INSPECTION HERE ?"></textarea>
+                                <textarea class="form-control" rows="1" placeholder="WHAT KIND OF INSPECTION HERE ?" name="major_refigerator"></textarea>
 
                             </div>
                             <div class="form-group pb-2">
                                 <label for="title" class="d-block">STOVE</label>
-                                <textarea class="form-control" rows="1" placeholder="WHAT KIND OF INSPECTION HERE ?"></textarea>
+                                <textarea class="form-control" rows="1" placeholder="WHAT KIND OF INSPECTION HERE ?" name="major_stove"></textarea>
                             </div>
 
                             <div class="form-group pb-2">
                                 <label for="title" class="d-block">WASHER/DRYER UNITS </label>
-                                <textarea class="form-control" rows="1" placeholder="WHAT KIND OF INSPECTION HERE ?"></textarea>
+                                <textarea class="form-control" rows="1" placeholder="WHAT KIND OF INSPECTION HERE ?" name="major_washer"></textarea>
                             </div>
 
                             <div class="form-group pb-2">
                                 <label for="title" class="d-block">BASEBOARD</label>
-                                <textarea class="form-control" rows="1" placeholder="WHAT KIND OF INSPECTION HERE ?"></textarea>
+                                <textarea class="form-control" rows="1" placeholder="WHAT KIND OF INSPECTION HERE ?" name="major_baseboard"></textarea>
                             </div>
 
 
@@ -238,8 +234,8 @@
                             <h4>PEST:</h4>
                             <div class="form-group pb-2">
                                 <label for="title" class="d-block">TREATMENT NEEDED?</label>
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> Yes
-                                <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling"> No
+                                <input type="radio" class="form-check form-check-inline ml-2" id="pest_treatment" name="pest_treatment" value="1"> Yes
+                                <input type="radio" class="form-check form-check-inline ml-2" id="pest_treatment" name="pest_treatment" value="2"> No
                                 <div class="row">
                                     <label for="ceiling_attachment">Attachment</label>
                                     <input class="form-control-file" name="ceiling_attachment" type="file">
@@ -251,7 +247,7 @@
                         <div class="border p-3">
                             <h4>OBSERVATIONS:</h4>
                             <div class="form-group pb-2">
-                                <textarea class="form-control"></textarea>
+                                <textarea class="form-control" name="observation"></textarea>
                             </div>
 
                             <div class="text-center">

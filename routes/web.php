@@ -38,6 +38,6 @@ Route::group(['as' => 'staff.','prefix' => 'staff','namespace' => 'Staff','middl
     Route::get('dashboard','DashboardController@index')->name('dashboard.index');
     Route::get('task','TaskController@index')->name('task.index');
     Route::get('task/{task}','TaskController@show')->name('task.show');
-    Route::get('/inspection/submit','InspectionController@submit')->name('inspection.submit');
+    Route::put('/inspection/formOne/{task}','InspectionController@formOne')->name('inspection.formOne');
 
 });
