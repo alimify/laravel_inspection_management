@@ -1,5 +1,7 @@
 @extends('layouts.appentry')
 
+@section('title','Reset Password')
+
 @section('content')
 
     <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(../../assets/images/big/auth-bg.jpg) no-repeat center center;">

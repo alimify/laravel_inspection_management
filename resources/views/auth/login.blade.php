@@ -1,5 +1,7 @@
 @extends('layouts.appentry')
 
+@section('title','Login')
+
 @section('content')
 
 
