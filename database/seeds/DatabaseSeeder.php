@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
              RolesTableSeeder::class,
              ClientsTableSeeder::class,
              TasksTableSeeder::class,
-             StatusTableSeeder::class
+             StatusTableSeeder::class,
+             CategoriesTableSeeder::class
          ]);
 
 

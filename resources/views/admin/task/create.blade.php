@@ -50,6 +50,14 @@
                                 </select>
                             </div>
 
+                            <div class="form-group">
+                                <label for="staff">Category</label>
+                                <select class="form-control select2-dropdown" name="category">
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->title}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <button type="submit" class="btn btn-success m-r-10">Submit</button>
                             <a href="{{route('admin.task.index')}}" class="btn btn-dark">Back</a>
                         </form>

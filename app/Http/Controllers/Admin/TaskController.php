@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Category;
 use App\Models\Client;
 use App\Models\Task;
 use App\User;
@@ -31,8 +32,9 @@ class TaskController extends Controller
     {
         $clients = Client::all();
         $users    = User::where('role_id',2)->get();
+        $categories = Category::all();
 
-      return response()->view('admin.task.create',compact('clients','users'));
+      return response()->view('admin.task.create',compact('clients','users','categories'));
     }
 
     /**
@@ -47,13 +49,15 @@ class TaskController extends Controller
             'title' => 'required',
             'description' => 'required',
             'client'      => 'required',
-            'staff'       => 'required'
+            'staff'       => 'required',
+            'category'    => 'required'
         ]);
 
         $task = new Task();
         $task->title = $request->title;
         $task->description = $request->description;
         $task->client_id = $request->client;
+        $task->category_id = $request->category;
         $task->user_id   = $request->staff;
         $task->save();
 
@@ -84,8 +88,9 @@ class TaskController extends Controller
         $users = User::where('role_id',2)->get();
         $clients = Client::all();
         $task = Task::find($id);
+        $categories = Category::all();
 
-      return response()->view('admin.task.edit',compact('users','clients','task'));
+      return response()->view('admin.task.edit',compact('users','clients','task','categories'));
     }
 
     /**
@@ -101,7 +106,8 @@ class TaskController extends Controller
             'title' => 'required',
             'description' => 'required',
             'client'      => 'required',
-            'staff'       => 'required'
+            'staff'       => 'required',
+            'category'    => 'required'
         ]);
 
         $task = Task::find($id);
@@ -109,6 +115,7 @@ class TaskController extends Controller
         $task->description = $request->description;
         $task->client_id = $request->client;
         $task->user_id   = $request->staff;
+        $task->category_id = $request->category;
         $task->save();
 
         return redirect()->back()->with('status','Task Successfully Updated..');

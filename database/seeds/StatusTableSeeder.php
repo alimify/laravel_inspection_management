@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Status;
 use Illuminate\Database\Seeder;
 
 class StatusTableSeeder extends Seeder
@@ -11,7 +12,7 @@ class StatusTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Status::insert([
+        Status::insert([
             [
                 'id'    => 1,
                 'title' => 'In Queue',

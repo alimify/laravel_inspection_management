@@ -21,6 +21,7 @@ class CreateTasksTable extends Migration
             $table->integer('client_id');
             $table->integer('user_id');
             $table->integer('inspection_id')->nullable()->default(null);
+            $table->integer('category_id');
             $table->integer('status_id')->default(1);
             $table->timestamps();
         });

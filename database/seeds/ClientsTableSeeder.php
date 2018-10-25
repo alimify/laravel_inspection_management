@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Client;
 use Illuminate\Database\Seeder;
 
 class ClientsTableSeeder extends Seeder
@@ -11,7 +12,7 @@ class ClientsTableSeeder extends Seeder
      */
     public function run()
     {
-       \App\Models\Client::insert([
+       Client::insert([
            [
                'name'             => 'Jahid Hasan',
                'phone'            => '986868787678',

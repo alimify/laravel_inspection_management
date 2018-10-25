@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Task;
 use Illuminate\Database\Seeder;
 
 class TasksTableSeeder extends Seeder
@@ -11,14 +12,15 @@ class TasksTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Task::insert([
+        Task::insert([
             [
                 'title'            => 'Task 1',
                 'address'          => 'ssk road, feni, bangladesh',
                 'description'      => 'check it test abcdef',
                 'client_id'        => 1,
                 'user_id'          => 2,
-                'inspection_id'    => null
+                'inspection_id'    => null,
+                'category_id'      => 1
             ],
             [
                 'title'            => 'Task 2',
@@ -26,7 +28,8 @@ class TasksTableSeeder extends Seeder
                 'description'      => 'description of here..',
                 'client_id'        => 2,
                 'user_id'          => 3,
-                'inspection_id'    => null
+                'inspection_id'    => null,
+                'category_id'      => 1
             ],
             [
                 'title'            => 'Look For this',
@@ -34,7 +37,8 @@ class TasksTableSeeder extends Seeder
                 'description'      => 'test for it',
                 'client_id'        => 3,
                 'user_id'          => 3,
-                'inspection_id'    => null
+                'inspection_id'    => null,
+                'category_id'      => 1
             ],
             [
                 'title'            => 'Look For this',
@@ -42,7 +46,8 @@ class TasksTableSeeder extends Seeder
                 'description'      => 'test for its.',
                 'client_id'        => 4,
                 'user_id'          => 5,
-                'inspection_id'    => null
+                'inspection_id'    => null,
+                'category_id'      => 1
             ]
 
         ]);
