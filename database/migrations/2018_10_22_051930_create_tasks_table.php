@@ -18,6 +18,7 @@ class CreateTasksTable extends Migration
             $table->string('title');
             $table->string('address')->nullable()->default(null);
             $table->text('description')->nullable()->default(null);
+            $table->text('note')->nullable()->default(null);
             $table->integer('client_id');
             $table->integer('user_id');
             $table->integer('inspection_id')->nullable()->default(null);

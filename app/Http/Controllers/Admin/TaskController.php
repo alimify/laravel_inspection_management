@@ -57,18 +57,15 @@ class TaskController extends Controller
         $task = new Task();
         $task->title = $request->title;
         $task->description = $request->description;
+        $task->note     = $request->note;
         $task->client_id = $request->client;
         $task->category_id = $request->category;
         $task->user_id   = $request->staff;
         $task->save();
 
 
-        $notification = new Notification();
-        $notification->type = 'admin_task_send';
-        $notification->user_id = $request->staff;
-        $notification->data = '<a href="'.route('staff.task.show',$task->id).'">New Task : '.$request->title.'</a>';
-        $notification->save();
 
+        $this->sendToStaff('admin_task_send',$task->user_id,'<a href="'.route('staff.task.show',$task->id).'">New Task : '.$request->title.'</a>');
 
         return redirect()->route('admin.task.index')->with('status','Task Successfully Submitted..');
     }
@@ -82,8 +79,9 @@ class TaskController extends Controller
     public function show($id)
     {
         $task = Task::find($id);
+        $inspection   = json_decode($task->Inspection->data??'');
 
-        return response()->view('admin.task.show',compact('task'));
+        return response()->view('admin.task.show',compact('task','inspection'));
     }
 
     /**
@@ -122,10 +120,16 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->title = $request->title;
         $task->description = $request->description;
+        $task->note   = $request->note;
         $task->client_id = $request->client;
         $task->user_id   = $request->staff;
         $task->category_id = $request->category;
         $task->save();
+
+
+if($task->status_id  == 1) {
+    $this->sendToStaff('admin_task_update',$task->user_id,'<a href="' . route('staff.task.show', $task->id) . '">Task Updated: ' . $request->title . '</a>');
+}
 
         return redirect()->back()->with('status','Task Successfully Updated..');
     }
@@ -139,5 +143,14 @@ class TaskController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    private function sendToStaff($type,$staff,$data){
+        $notification = new Notification();
+        $notification->type = $type;
+        $notification->user_id = $staff;
+        $notification->data = $data;
+        $notification->save();
     }
 }

@@ -32,6 +32,14 @@
                                 <textarea class="form-control" rows="2" name="description"></textarea>
                             </div>
 
+
+                            <div class="form-group">
+                                <label for="note">Note</label>
+                                <textarea class="form-control" rows="2" name="note"></textarea>
+                            </div>
+
+
+
                             <div class="form-group">
                                 <label for="client">Client</label>
                                 <select class="form-control select2-dropdown" name="client">

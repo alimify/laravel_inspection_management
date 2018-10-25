@@ -17,6 +17,8 @@ class TaskController extends Controller
     }
 
     public function show(Task $task){
-        return response()->view('staff.task.show',compact('task'));
+        $inspection   = json_decode($task->Inspection->data??'');
+
+        return response()->view('staff.task.show',compact('task','inspection'));
     }
 }

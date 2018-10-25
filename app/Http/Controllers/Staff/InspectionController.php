@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Models\Inspection;
+use App\Models\Notification;
 use App\Models\Task;
+use App\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -59,6 +61,12 @@ class InspectionController extends Controller
         $inspection->data = json_encode($data);
         $inspection->save();
 
+        $task->inspection_id = $inspection->id;
+        $task->status_id = 2;
+        $task->save();
+
+        $this->sentToAdmin('staff_task_submitted','<a href="'.route('staff.task.show',$task->id).'">Task Submitted : '.$request->title.'</a>');
+
         return redirect()->back()->with('status','Form Submitted Successfully.');
     }
 
@@ -69,5 +77,18 @@ class InspectionController extends Controller
     private function formThree(Request $request,Task $task){
 
     }
+
+
+    public function sentToAdmin($type,$data){
+
+        foreach (Role::find(1)->Users as $user){
+
+            $notification = new Notification();
+            $notification->type = $type;
+            $notification->user_id = $user->id;
+            $notification->data = $data;
+            $notification->save();
+        }
+     }
 
 }
