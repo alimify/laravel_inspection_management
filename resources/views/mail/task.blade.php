@@ -1,1 +1,3 @@
-{{message}}
+<p>
+    {{$message}}
+</p>

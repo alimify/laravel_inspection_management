@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Mail;
 
 class MailSender extends Controller
 {
-    public static function send($view,$data){
+    public static function send($views,$datas){
+        $view = $views;
+        $data = $datas;
 
       Mail::send($view,$data,function ($mail) use ($data){
           $mail->from($data['from'],$data['fromname']);
