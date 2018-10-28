@@ -72,7 +72,7 @@ class TaskController extends Controller
             'to' => $user->email,
             'name' => $user->name,
             'subject' => 'You have new notification',
-            'message' => 'You have received a new task - '.$task->title.'<a href="'.route('staff.task.show',$task->id).'">View Task</a>',
+            'body' => 'You have received a new task - '.$task->title.'<a href="'.route('staff.task.show',$task->id).'">View Task</a>',
             'from'   => 'test@phafex.xyz',
             'fromname' => "Phafex",
             'file'  => false
@@ -146,7 +146,7 @@ class TaskController extends Controller
             'to' => $request->email,
             'name' => $request->name,
             'subject' => 'Your have received new notification.',
-            'message' => 'A task assign to you has been updated - '.$task->title.'<a href="'.route('staff.task.show',$task->id).'">View Task</a>',
+            'body' => 'A task assign to you has been updated - '.$task->title.'<a href="'.route('staff.task.show',$task->id).'">View Task</a>',
             'from'   => 'test@phafex.xyz',
             'fromname' => "Phafex",
             'file'  => false

@@ -107,7 +107,7 @@ class RequestController extends Controller
                 'to' => $client->email,
                 'name' => $client->name,
                 'subject' => 'Your request Response.',
-                'message' => 'Your request has been approved, thank you.',
+                'body' => 'Your request has been approved, thank you.',
                 'from'   => 'test@phafex.xyz',
                 'fromname' => "Phafex",
                 'file'  => false
@@ -124,7 +124,7 @@ class RequestController extends Controller
                 'to' => $request->email,
                 'name' => $request->name,
                 'subject' => 'Your request Response.',
-                'message' => 'Sorry for some reason we do not approved your request.',
+                'body' => 'Sorry for some reason we do not approved your request.',
                 'from'   => 'test@phafex.xyz',
                 'fromname' => "Phafex",
                 'file'  => false

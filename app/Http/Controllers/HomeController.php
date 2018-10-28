@@ -72,7 +72,7 @@ class HomeController extends Controller
            'to' => $rquest->email,
            'name' => $rquest->name,
            'subject' => 'Your request successfully received.',
-           'message' => 'We have received your request , soon we will response. Thank you.',
+           'body' => 'We have received your request , soon we will response. Thank you.',
            'from'   => 'test@phafex.xyz',
            'fromname' => "Phafex",
            'file'  => false

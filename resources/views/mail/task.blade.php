@@ -1,3 +1,3 @@
 <p>
-    {{$message}}
+    {{$body}}
 </p>
