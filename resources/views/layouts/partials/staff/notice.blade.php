@@ -1,3 +1,4 @@
+<script src="{{asset('backend/'.'assets/libs/toastr/build/toastr.min.js')}}"></script>
 <script>
     $(function() {
         @if ($errors->any())

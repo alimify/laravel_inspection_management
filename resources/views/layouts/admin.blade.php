@@ -133,7 +133,6 @@
 <script src="{{asset('backend/'.'dist/js/sidebarmenu.js')}}"></script>
 <!--Custom JavaScript -->
 <script src="{{asset('backend/'.'dist/js/custom.js')}}"></script>
-<script src="{{asset('backend/'.'assets/libs/toastr/build/toastr.min.js')}}"></script>
     <script>
         $("#logout-link").click(function () {
             let logoutForm = document.createElement('form'),

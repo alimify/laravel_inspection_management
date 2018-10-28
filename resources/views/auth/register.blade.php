@@ -4,12 +4,11 @@
 
 @section('content')
 
-    <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(../../assets/images/big/auth-bg.jpg) no-repeat center center;">
+    <div class="auth-wrapper d-flex no-block justify-content-center align-items-center">
         <div class="auth-box">
             <div>
                 <div class="logo">
-                    <span class="db"><img src="../../assets/images/logo-icon.png" alt="logo" /></span>
-                    <h5 class="font-medium m-b-20">Sign Up to Admin</h5>
+                    <h5 class="font-medium m-b-20">Sign Up</h5>
                 </div>
                 <!-- Form -->
                 <div class="row">

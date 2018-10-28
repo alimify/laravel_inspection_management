@@ -4,11 +4,10 @@
 
 @section('content')
 
-    <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(../../assets/images/big/auth-bg.jpg) no-repeat center center;">
+    <div class="auth-wrapper d-flex no-block justify-content-center align-items-center">
         <div class="auth-box">
             <div>
                 <div class="logo">
-                    <span class="db"><img src="../../assets/images/logo-icon.png" alt="logo" /></span>
                     <h5 class="font-medium m-b-20">Recover Password</h5>
                 </div>
                 @if (session('status'))

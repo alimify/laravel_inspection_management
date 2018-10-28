@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-   return redirect()->route('login');
-});
+Route::get('/','HomeController@frontForm')->name('index');
+Route::put('/','HomeController@frontFormSubmit')->name('frontFormSubmit');
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@frontForm')->name('home');
 
 
 Route::group(['as' => 'admin.','prefix' => 'admin','namespace' => 'Admin','middleware' => ['auth','admin']],function() {
@@ -26,6 +26,9 @@ Route::group(['as' => 'admin.','prefix' => 'admin','namespace' => 'Admin','middl
     Route::resource('client','ClientController');
     Route::resource('user','UserController');
     Route::resource('task','TaskController');
+    Route::resource('request','RequestController');
+    Route::get('request/{id}/{states}','RequestController@status')->name('request.status');
+
     Route::get('system/setting','SystemController@index')->name('system.setting');
     Route::post('system/setting','SystemController@update')->name('system.setting.update');
 

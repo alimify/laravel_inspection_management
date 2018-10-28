@@ -21,6 +21,14 @@
                     </a>
                 </li>
 
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.request.index')}}" aria-expanded="false">
+                        <i class="mdi mdi-av-timer"></i>
+                        <span class="hide-menu">Request </span>
+                    </a>
+                </li>
+
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.client.index')}}" aria-expanded="false">
                         <i class="mdi mdi-av-timer"></i>

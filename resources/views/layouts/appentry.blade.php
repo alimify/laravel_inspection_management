@@ -13,6 +13,8 @@
     <title>@yield('title')</title>
     <!-- Custom CSS -->
     <link href="{{asset('backend/dist/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('backend/'.'assets/libs/toastr/build/toastr.min.css')}}" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -21,7 +23,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body style="background:url({{asset('backend/assets/images/big/auth-bg.jpg')}}) no-repeat center center;">
 <div class="main-wrapper">
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
@@ -74,6 +76,8 @@
         $("#recoverform").fadeIn();
     });
 </script>
+@include('layouts.partials.staff.notice')
+
 </body>
 
 </html>

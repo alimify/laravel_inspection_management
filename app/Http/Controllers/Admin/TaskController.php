@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\MailSender;
 use App\Models\Category;
 use App\Models\Client;
 use App\Models\Notification;
@@ -64,8 +65,23 @@ class TaskController extends Controller
         $task->save();
 
 
+        $user = User::find($task->user_id);
 
-        $this->sendToStaff('admin_task_send',$task->user_id,route('staff.task.show',$task->id),'New Task',$task->title);
+
+        $data = [
+            'to' => $user->email,
+            'name' => $user->name,
+            'subject' => 'You have new notification',
+            'message' => 'You have received a new task - '.$task->title.'<a href="'.route('staff.task.show',$task->id).'">View Task</a>',
+            'from'   => 'test@phafex.xyz',
+            'fromname' => "Phafex",
+            'file'  => false
+        ];
+
+        MailSender::send('mail.task',$data);
+
+
+        $this->sendToStaff('task',$task->id,$task->user_id,route('staff.task.show',$task->id),'New Task',$task->title);
 
         return redirect()->route('admin.task.index')->with('status','Task Successfully Submitted..');
     }
@@ -126,9 +142,20 @@ class TaskController extends Controller
         $task->category_id = $request->category;
         $task->save();
 
+        $data = [
+            'to' => $request->email,
+            'name' => $request->name,
+            'subject' => 'Your have received new notification.',
+            'message' => 'A task assign to you has been updated - '.$task->title.'<a href="'.route('staff.task.show',$task->id).'">View Task</a>',
+            'from'   => 'test@phafex.xyz',
+            'fromname' => "Phafex",
+            'file'  => false
+        ];
+
+        MailSender::send('mail.task',$data);
 
 if($task->status_id  == 1) {
-    $this->sendToStaff('admin_task_update',$task->user_id,route('staff.task.show', $task->id),'Task Updated',$task->title);
+    $this->sendToStaff('task',$task->id,$task->user_id,route('staff.task.show', $task->id),'Task Updated',$task->title);
 }
 
         return redirect()->back()->with('status','Task Successfully Updated..');
@@ -146,9 +173,10 @@ if($task->status_id  == 1) {
     }
 
 
-    private function sendToStaff($type,$staff,$route,$title,$description){
+    private function sendToStaff($type,$nof,$staff,$route,$title,$description){
         $notification = new Notification();
         $notification->type = $type;
+        $notification->nof = $nof;
         $notification->user_id = $staff;
         $notification->route = $route;
         $notification->title = $title;
