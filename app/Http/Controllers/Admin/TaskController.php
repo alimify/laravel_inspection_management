@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\MailSender;
+use App\Laraption;
 use App\Models\Category;
 use App\Models\Client;
 use App\Models\Notification;
@@ -66,13 +67,23 @@ class TaskController extends Controller
 
 
         $user = User::find($task->user_id);
+        $mailb = Laraption::where('key','=','to.staff.task.assign.notification')->first();
+        $mailb = json_decode($mailb ? $mailb->value : null);
 
+        $mailRarray = [
+            '#taskLink#' => route('staff.task.show',$task->id),
+            '#taskTitle#' => $task->title,
+            '#userName#'  => $user->name
+        ];
+
+        $mailbody = $mailb ? strtr($mailb->body,$mailRarray) : '';
+        $mailtitle = $mailb ? $mailb->title : 'You have new notification';
 
         $data = [
             'to' => $user->email,
             'name' => $user->name,
-            'subject' => 'You have new notification',
-            'body' => 'You have received a new task - '.$task->title.'<a href="'.route('staff.task.show',$task->id).'">View Task</a>',
+            'subject' => $mailtitle,
+            'body' => $mailbody,
             'from'   => 'test@phafex.xyz',
             'fromname' => "Phafex",
             'file'  => false
@@ -142,11 +153,22 @@ class TaskController extends Controller
         $task->category_id = $request->category;
         $task->save();
 
+        $mailb = Laraption::where('key','=','to.staff.task.update.notification')->first();
+        $mailb = json_decode($mailb ? $mailb->value : null);
+
+        $mailRarray = [
+            '#taskLink#' => route('staff.task.show',$task->id),
+            '#taskTitle#' => $task->title,
+            '#userName#'  => User::find($task->user_id)->name
+        ];
+        $mailbody = $mailb ? strtr($mailb->body,$mailRarray) : '';
+        $mailtitle = $mailb? $mailb->title : 'Your have received new notification.';
+
         $data = [
             'to' => $request->email,
             'name' => $request->name,
-            'subject' => 'Your have received new notification.',
-            'body' => 'A task assign to you has been updated - '.$task->title.'<a href="'.route('staff.task.show',$task->id).'">View Task</a>',
+            'subject' => $mailtitle,
+            'body' => $mailbody,
             'from'   => 'test@phafex.xyz',
             'fromname' => "Phafex",
             'file'  => false

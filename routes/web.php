@@ -31,6 +31,10 @@ Route::group(['as' => 'admin.','prefix' => 'admin','namespace' => 'Admin','middl
 
     Route::get('system/setting','SystemController@index')->name('system.setting');
     Route::post('system/setting','SystemController@update')->name('system.setting.update');
+    Route::get('system/setting/mail','SystemController@mailTemplate')->name('system.setting.mail.index');
+    Route::put('system/setting/mail','SystemController@mailTemplateUpdate')->name('system.setting.mail.update');
+
+
 
 });
 

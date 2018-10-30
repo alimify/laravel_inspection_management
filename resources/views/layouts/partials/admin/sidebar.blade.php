@@ -50,6 +50,16 @@
                     </a>
                 </li>
 
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.system.setting.mail.index')}}" aria-expanded="false">
+                        <i class="mdi mdi-av-timer"></i>
+                        <span class="hide-menu">Mail Template </span>
+                    </a>
+                </li>
+
+
+
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

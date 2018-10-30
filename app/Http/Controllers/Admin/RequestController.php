@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\MailSender;
+use App\Laraption;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -93,6 +94,11 @@ class RequestController extends Controller
         $request->status = $states;
         $request->save();
 
+        $mailRarray = [
+            '#userName#' => $request->name
+        ];
+
+
         if($request->status == 3){
             $client = new Client();
             $client->name = $request->name;
@@ -102,12 +108,17 @@ class RequestController extends Controller
             $client->descriptions = $request->message;
             $client->save();
 
+            $mailb = Laraption::where('key','=','to.client.request.response.accept')->first();
+            $mailb = json_decode($mailb ? $mailb->value : null);
+            $mailbody = $mailb ? strtr($mailb->body,$mailRarray) : '';
+
+            $mailtitle = $mailb ? $mailb->title : 'Your request Response.';
 
             $data = [
                 'to' => $client->email,
                 'name' => $client->name,
-                'subject' => 'Your request Response.',
-                'body' => 'Your request has been approved, thank you.',
+                'subject' => $mailtitle,
+                'body' => $mailbody,
                 'from'   => 'test@phafex.xyz',
                 'fromname' => "Phafex",
                 'file'  => false
@@ -120,11 +131,20 @@ class RequestController extends Controller
                               ->with('status','Client Successfully Added..');
         }elseif ($request->status == 2){
 
+
+            $mailb = Laraption::where('key','=','to.client.request.response.decline')->first();
+            $mailb = json_decode($mailb ? $mailb->value : null);
+
+            $mailbody = $mailb ? strtr($mailb->body,$mailRarray) : '';
+
+            $mailtitle = $mailb ? $mailb->title : 'Your request Response.';
+
+
             $data = [
                 'to' => $request->email,
                 'name' => $request->name,
-                'subject' => 'Your request Response.',
-                'body' => 'Sorry for some reason we do not approved your request.',
+                'subject' => $mailtitle,
+                'body' => $mailbody,
                 'from'   => 'test@phafex.xyz',
                 'fromname' => "Phafex",
                 'file'  => false

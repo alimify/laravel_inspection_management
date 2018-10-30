@@ -68,11 +68,25 @@ class HomeController extends Controller
        $rquest->status = 1;
        $rquest->save();
 
-       $data = [
+
+        $mailRarray = [
+            '#userName#' => $request->name
+        ];
+
+
+
+        $mailb = Laraption::where('key','=','to.client.request.entry')->first();
+        $mailb = json_decode($mailb ? $mailb->value : null);
+        $mailbody = $mailb ? strtr($mailb->body,$mailRarray) : '';
+
+        $mailtitle = $mailb ? $mailb->title : 'Your request successfully received.';
+
+
+        $data = [
            'to' => $rquest->email,
            'name' => $rquest->name,
-           'subject' => 'Your request successfully received.',
-           'body' => 'We have received your request , soon we will response. Thank you.',
+           'subject' => $mailtitle,
+           'body' => $mailbody,
            'from'   => 'test@phafex.xyz',
            'fromname' => "Phafex",
            'file'  => false
