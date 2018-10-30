@@ -70,7 +70,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="client_request_decline_body">Body</label>
-                                <textarea class="form-control" name="client_request_decline_body" id="client_request_decline_body">{{$client_request_decline->body}}</textarea>
+                                <textarea class="form-control" name="client_request_decline_body" id="client_request_decline_body">{{$client_request_decline->body??''}}</textarea>
                             </div>
                         </div>
                     </div>
