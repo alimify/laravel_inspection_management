@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Laraption;
+use App\Models\Client;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +28,7 @@ class HomeController extends Controller
     public function index()
     {
 
-       /* if(Auth::check() && Auth::user()->role_id == 1){
+       if(Auth::check() && Auth::user()->role_id == 1){
 
             $redirectto ='admin.dashboard.index';
 
@@ -38,11 +40,11 @@ class HomeController extends Controller
 
             $redirectto = 'index';
 
-        }*/
+        }
 
-        return response()->view('public.reform');
+        //return response()->view('public.reform');
 
-       // return redirect()->route($redirectto);
+        return redirect()->route($redirectto);
     }
 
 
@@ -98,4 +100,25 @@ class HomeController extends Controller
 
        return redirect()->back()->with('status','Request successfully received');
     }
+
+
+
+    public function confirmTask($task,$client){
+        $task = Task::where('id',$task)
+                      ->where('client_id',$client)
+                      ->first()
+        ;
+        if(!$task){
+            abort(404);
+        }
+
+        $task->status_id = 4;
+        $task->save();
+
+        $client = Client::find($client);
+
+        return response()->view('public.confirmTask',compact('client'));
+    }
+
+
 }

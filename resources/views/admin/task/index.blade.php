@@ -3,6 +3,7 @@
 @section('title','Task')
 
 @push('css')
+    <link href="{{asset('backend/'.'assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
 
 
 @endpush
@@ -58,5 +59,11 @@
 
 
 @push('script')
+    <script src="{{asset('backend/'.'assets/extra-libs/DataTables/datatables.min.js')}}"></script>
+    <script>
+        $( document ).ready(function() {
 
+            $("#datatable").DataTable()
+        })
+    </script>
 @endpush

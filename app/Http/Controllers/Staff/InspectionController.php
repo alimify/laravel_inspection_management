@@ -8,6 +8,7 @@ use App\Models\Task;
 use App\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class InspectionController extends Controller
 {
@@ -15,18 +16,14 @@ class InspectionController extends Controller
 
 
     public function submitForm(Request $request,Task $task){
-        if($task->category_id == 1){
-        $result      =    $this->formOne($request,$task->id);
-        }elseif ($task->category_id == 2){
-         $result     =   $this->formTwo($request,$task->id);
-        }elseif ($task->category_id == 3){
-        $result      =   $this->formThree($request,$task->id);
-        }
+
+        $form = $task->Category->form;
+        $result  = $this->$form($request,$task);
 
         return $result ? redirect()->back()->with('status','Form Submitted Successfully.') : redirect()->back();
     }
 
-    public function formOne(Request $request,Task $task){
+    public function formOne($request,$task){
 
         $inspection = Inspection::firstOrNew([
             'task_id'  => $task->id
@@ -64,6 +61,7 @@ class InspectionController extends Controller
         $task->inspection_id = $inspection->id;
         $task->status_id = 2;
         $task->save();
+
 
         $this->sentToAdmin('task',$task->id,route('admin.task.show',$task->id),'Task Submitted',$task->title);
 

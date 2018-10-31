@@ -95,7 +95,7 @@ class RequestController extends Controller
         $request->save();
 
         $mailRarray = [
-            '#userName#' => $request->name
+            '#client#' => $request->name
         ];
 
 

@@ -164,3 +164,6 @@
     </div>
 </div>
 
+<div class="text-center">
+    <a href="{{route('admin.inspection.edit',$task->id)}}" class="btn btn-dark">EDIT</a> <a href="{{route('admin.inspection.sendToClient',$task->id)}}" class="btn btn-success">Send To Client</a>
+</div>

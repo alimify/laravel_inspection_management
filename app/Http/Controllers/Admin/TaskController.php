@@ -11,6 +11,7 @@ use App\Models\Task;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -53,19 +54,26 @@ class TaskController extends Controller
             'description' => 'required',
             'client'      => 'required',
             'staff'       => 'required',
-            'category'    => 'required'
+            'category'    => 'required',
+            'address'     => 'required'
         ]);
 
         $task = new Task();
         $task->title = $request->title;
         $task->description = $request->description;
         $task->note     = $request->note;
+        $task->address = $request->address;
         $task->client_id = $request->client;
         $task->category_id = $request->category;
         $task->user_id   = $request->staff;
         $task->save();
 
 
+        /*Send Notification*/
+        $this->sendToStaff('task',$task->id,$task->user_id,route('staff.task.show',$task->id),'New Task',$task->title);
+
+
+        /*Send Email Notification*/
         $user = User::find($task->user_id);
         $mailb = Laraption::where('key','=','to.staff.task.assign.notification')->first();
         $mailb = json_decode($mailb ? $mailb->value : null);
@@ -73,7 +81,7 @@ class TaskController extends Controller
         $mailRarray = [
             '#taskLink#' => route('staff.task.show',$task->id),
             '#taskTitle#' => $task->title,
-            '#userName#'  => $user->name
+            '#staff#'  => $user->name
         ];
 
         $mailbody = $mailb ? strtr($mailb->body,$mailRarray) : '';
@@ -88,11 +96,8 @@ class TaskController extends Controller
             'fromname' => "Phafex",
             'file'  => false
         ];
-
         MailSender::send('mail.task',$data);
 
-
-        $this->sendToStaff('task',$task->id,$task->user_id,route('staff.task.show',$task->id),'New Task',$task->title);
 
         return redirect()->route('admin.task.index')->with('status','Task Successfully Submitted..');
     }
@@ -107,6 +112,16 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
         $inspection   = json_decode($task->Inspection->data??'');
+
+
+        Notification::where('nof',$task->id)
+            ->where('type','task')
+            ->where('user_id',Auth::id())
+            ->update([
+                'read' => true
+            ]);
+
+
 
         return response()->view('admin.task.show',compact('task','inspection'));
     }
@@ -141,32 +156,42 @@ class TaskController extends Controller
             'description' => 'required',
             'client'      => 'required',
             'staff'       => 'required',
-            'category'    => 'required'
+            'category'    => 'required',
+            'address'    => 'required'
         ]);
 
         $task = Task::find($id);
         $task->title = $request->title;
         $task->description = $request->description;
         $task->note   = $request->note;
+        $task->address = $request->address;
         $task->client_id = $request->client;
         $task->user_id   = $request->staff;
         $task->category_id = $request->category;
         $task->save();
 
+        /*Send Notification*/
+        if($task->status_id  == 1) {
+            $this->sendToStaff('task',$task->id,$task->user_id,route('staff.task.show', $task->id),'Task Updated',$task->title);
+        }
+
+
+        /*Send Email Notification*/
+        $user = User::find($task->user_id);
         $mailb = Laraption::where('key','=','to.staff.task.update.notification')->first();
         $mailb = json_decode($mailb ? $mailb->value : null);
 
         $mailRarray = [
             '#taskLink#' => route('staff.task.show',$task->id),
             '#taskTitle#' => $task->title,
-            '#userName#'  => User::find($task->user_id)->name
+            '#staff#'  => User::find($task->user_id)->name
         ];
         $mailbody = $mailb ? strtr($mailb->body,$mailRarray) : '';
         $mailtitle = $mailb? $mailb->title : 'Your have received new notification.';
 
         $data = [
-            'to' => $request->email,
-            'name' => $request->name,
+            'to' => $user->email,
+            'name' => $user->name,
             'subject' => $mailtitle,
             'body' => $mailbody,
             'from'   => 'test@phafex.xyz',
@@ -175,10 +200,6 @@ class TaskController extends Controller
         ];
 
         MailSender::send('mail.task',$data);
-
-if($task->status_id  == 1) {
-    $this->sendToStaff('task',$task->id,$task->user_id,route('staff.task.show', $task->id),'Task Updated',$task->title);
-}
 
         return redirect()->back()->with('status','Task Successfully Updated..');
     }

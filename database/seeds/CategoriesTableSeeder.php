@@ -15,7 +15,8 @@ class CategoriesTableSeeder extends Seeder
         Category::insert([
             [
                 'id'         => 1,
-                'title'      => 'Unit Inspection'
+                'title'      => 'Unit Inspection',
+                'form'       => 'formOne'
             ]
         ]);
     }

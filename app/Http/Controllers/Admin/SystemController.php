@@ -5,15 +5,56 @@ namespace App\Http\Controllers\Admin;
 use App\Laraption;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class SystemController extends Controller
 {
     public function index(){
-        return response()->view('admin.main.systemsetting');
+        $siteLogo = Laraption::where('key','site.logo')->first();
+        $siteLogo = $siteLogo ? $siteLogo->value : '';
+
+        $siteEmail = Laraption::where('key','site.email')->first();
+        $siteEmail = $siteEmail ? $siteEmail->value : '';
+
+        return response()->view('admin.system.setting',compact('siteLogo','siteEmail'));
     }
 
     public function update(Request $request){
 
+        $this->validate($request,[
+            'logo' => 'mimes:jpg,jpeg,png,bmp,gif'
+        ]);
+
+        $logo = Laraption::firstOrNew([
+            'key' => 'site.logo'
+        ]);
+        $logofile = $request->file('logo');
+        $dir = 'site';
+        $logoname = $logo->value;
+
+        if(is_file($logofile)){
+
+            if (!Storage::disk('public')->exists($dir)) {
+                Storage::disk('public')->makeDirectory($dir);
+            }
+
+            if(Storage::disk('public')->exists(str_replace('storage/','',$logo->value))){
+                Storage::disk('public')->delete(str_replace('storage/','',$logo->value));
+            }
+
+        $logoname = 'storage/'.$request->file('logo')->store($dir, 'public');
+
+        }
+       $logo->value = $logoname;
+       $logo->save();
+
+      $email =   Laraption::firstOrNew([
+            'key' => 'site.email'
+        ]);
+      $email->value = $request->email;
+       $email->save();
+
+       return redirect()->back()->with('status','Setting Successfully Updated.');
     }
 
 
@@ -37,9 +78,11 @@ class SystemController extends Controller
         $staff_update_task = Laraption::where('key','=','to.staff.task.update.notification')->first();
         $staff_update_task = $staff_update_task ? json_decode($staff_update_task->value) : '';
 
+        $client_task_confirm  = Laraption::where('key','=','to.client.task.confirm.request')->first();
+        $client_task_confirm = $client_task_confirm ? json_decode($client_task_confirm->value) : '';
 
         return response()->view('admin.system.mail',compact('client_request','client_request_accept',
-          'client_request_decline','staff_assign_task','staff_update_task'));
+          'client_request_decline','staff_assign_task','staff_update_task','client_task_confirm'));
     }
 
     public function mailTemplateUpdate(Request $request){
@@ -107,6 +150,32 @@ class SystemController extends Controller
         ]);
 
         $staff_task_update_notification->save();
+
+
+
+        $client_task_send = Laraption::firstOrNew([
+            'key' => 'to.client.task.confirm.request'
+        ]);
+
+        $client_task_send->value = json_encode([
+            'title' => $request->client_task_send_title,
+            'body'  => $request->client_task_send_body
+        ]);
+
+        $client_task_send->save();
+
+
+        $client_task_thanks = Laraption::firstOrNew([
+            'key' => 'to.client.task.confirm.thanks'
+        ]);
+
+        $client_task_thanks->value = json_encode([
+            'title' => $request->client_task_thanks_title,
+            'body'  => $request->client_task_thanks_body
+        ]);
+
+        $client_task_thanks->save();
+
 
 
         return redirect()->back()->with('status','Mail Template Updated..');

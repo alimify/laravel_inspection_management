@@ -21,4 +21,8 @@ class Task extends Model
     public function Inspection(){
         return $this->hasOne('App\Models\Inspection','id','inspection_id');
     }
+
+    public function Category(){
+        return $this->hasOne('App\Models\Category','id','category_id');
+    }
 }

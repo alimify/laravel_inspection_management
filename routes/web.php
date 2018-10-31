@@ -13,11 +13,12 @@
 
 Route::get('/','HomeController@frontForm')->name('index');
 Route::put('/','HomeController@frontFormSubmit')->name('frontFormSubmit');
+Route::get('/confirm/task/{task}/{client}','HomeController@confirmTask')->name('confirmTask');
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@frontForm')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::group(['as' => 'admin.','prefix' => 'admin','namespace' => 'Admin','middleware' => ['auth','admin']],function() {
@@ -27,6 +28,10 @@ Route::group(['as' => 'admin.','prefix' => 'admin','namespace' => 'Admin','middl
     Route::resource('user','UserController');
     Route::resource('task','TaskController');
     Route::resource('request','RequestController');
+    Route::get('inspection/edit/{id}','InspectionController@edit')->name('inspection.edit');
+    Route::put('inspection/{id}','InspectionController@update')->name('inspection.update');
+    Route::get('inspection/sendToClient/{id}','InspectionController@sendToClient')->name('inspection.sendToClient');
+
     Route::get('request/{id}/{states}','RequestController@status')->name('request.status');
 
     Route::get('system/setting','SystemController@index')->name('system.setting');
@@ -45,6 +50,6 @@ Route::group(['as' => 'staff.','prefix' => 'staff','namespace' => 'Staff','middl
     Route::get('dashboard','DashboardController@index')->name('dashboard.index');
     Route::get('task','TaskController@index')->name('task.index');
     Route::get('task/{task}','TaskController@show')->name('task.show');
-    Route::put('/inspection/formOne/{task}','InspectionController@formOne')->name('inspection.formOne');
+    Route::put('/inspection/submit/{task}','InspectionController@submitForm')->name('inspection.submit');
 
 });

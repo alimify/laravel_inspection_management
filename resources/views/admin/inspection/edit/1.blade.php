@@ -6,7 +6,7 @@
                 <h4 class="card-title">Report</h4>
                 <h6 class="card-subtitle"></h6>
                 <div class="r-separator">
-                    <form action="{{route('staff.inspection.submit',$task->id)}}" method="POST">
+                    <form action="{{route('admin.inspection.update',$task->id)}}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="border p-3">
@@ -252,6 +252,7 @@
                             </div>
 
                             <div class="text-center">
+                                <a class="btn btn-primary btn-dark" href="{{route('admin.task.show',$task->id)}}">BACK</a>
                                 <input class="btn btn-primary btn-success" type="submit" name="submit" value="SUBMIT">
                             </div>
 

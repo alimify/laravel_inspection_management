@@ -126,6 +126,29 @@
             </div>
         </div>
 
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-body">
+                    <h4 class="card-title">Client Confirm Task</h4>
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">
+
+                            <div class="form-group">
+                                <label for="client_task_send_title">Title</label>
+                                <input type="text" class="form-control" id="client_task_send_title" name="client_task_send_title" value="{{$client_task_confirm->title??''}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="client_task_send_body">Body</label>
+                                <textarea class="form-control" name="client_task_send_body" id="client_task_send_body">{{$client_task_confirm->body??''}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="text-center">
         <input type="submit" class="btn btn-success col-4" name="submit" value="Submit">
         </div>

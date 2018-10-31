@@ -34,9 +34,9 @@
     </div>
 
 
-    @if($inspection && $task->category_id)
+    @if($inspection)
 
-        @include('admin.inspection.form.1')
+        @include('admin.inspection.show.'.$task->category_id)
 
     @endif
 

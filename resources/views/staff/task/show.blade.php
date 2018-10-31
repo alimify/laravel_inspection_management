@@ -30,13 +30,8 @@
             </div>
         </div>
     </div>
-    @if($task->category_id == 1)
-    @include('staff.inspection.form.1')
-    @elseif($task->category_id == 2)
-    No Form available for this task
-    @elseif($task->category_id == 3)
-    No Form Available For this task
-    @endif
+    @include('staff.inspection.form.'.$task->category_id)
+
 @endsection
 
 
