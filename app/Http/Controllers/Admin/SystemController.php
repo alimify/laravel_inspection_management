@@ -10,13 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class SystemController extends Controller
 {
     public function index(){
-        $siteLogo = Laraption::where('key','site.logo')->first();
-        $siteLogo = $siteLogo ? $siteLogo->value : '';
-
-        $siteEmail = Laraption::where('key','site.email')->first();
-        $siteEmail = $siteEmail ? $siteEmail->value : '';
-
-        return response()->view('admin.system.setting',compact('siteLogo','siteEmail'));
+        return response()->view('admin.system.setting');
     }
 
     public function update(Request $request){
@@ -53,6 +47,13 @@ class SystemController extends Controller
         ]);
       $email->value = $request->email;
        $email->save();
+
+
+        $emailname =   Laraption::firstOrNew([
+            'key' => 'site.emailname'
+        ]);
+        $emailname->value = $request->emailname;
+        $emailname->save();
 
        return redirect()->back()->with('status','Setting Successfully Updated.');
     }

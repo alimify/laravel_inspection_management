@@ -119,8 +119,6 @@ class RequestController extends Controller
                 'name' => $client->name,
                 'subject' => $mailtitle,
                 'body' => $mailbody,
-                'from'   => 'test@phafex.xyz',
-                'fromname' => "Phafex",
                 'file'  => false
             ];
 
@@ -145,8 +143,6 @@ class RequestController extends Controller
                 'name' => $request->name,
                 'subject' => $mailtitle,
                 'body' => $mailbody,
-                'from'   => 'test@phafex.xyz',
-                'fromname' => "Phafex",
                 'file'  => false
             ];
 

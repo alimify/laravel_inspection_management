@@ -53,3 +53,11 @@ Route::group(['as' => 'staff.','prefix' => 'staff','namespace' => 'Staff','middl
     Route::put('/inspection/submit/{task}','InspectionController@submitForm')->name('inspection.submit');
 
 });
+
+
+Route::group(['as' => 'user.','prefix' => 'user','namespace' => 'User','middleware' => ['auth']],function() {
+    Route::get('profile/{id?}','ProfileController@index')->name('profile');
+    Route::get('settings/{id?}','ProfileController@settings')->name('settings');
+    Route::put('settings/{id?}','ProfileController@settingsUpdate')->name('settings.update');
+
+});

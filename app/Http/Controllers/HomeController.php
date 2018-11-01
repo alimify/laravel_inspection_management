@@ -90,8 +90,6 @@ class HomeController extends Controller
            'name' => $rquest->name,
            'subject' => $mailtitle,
            'body' => $mailbody,
-           'from'   => 'test@phafex.xyz',
-           'fromname' => "Phafex",
            'file'  => false
        ];
 

@@ -92,8 +92,6 @@ class TaskController extends Controller
             'name' => $user->name,
             'subject' => $mailtitle,
             'body' => $mailbody,
-            'from'   => 'test@phafex.xyz',
-            'fromname' => "Phafex",
             'file'  => false
         ];
         MailSender::send('mail.task',$data);
@@ -194,8 +192,6 @@ class TaskController extends Controller
             'name' => $user->name,
             'subject' => $mailtitle,
             'body' => $mailbody,
-            'from'   => 'test@phafex.xyz',
-            'fromname' => "Phafex",
             'file'  => false
         ];
 
