@@ -33,6 +33,17 @@
                                 <input type="text" class="form-control col-md-10 col-lg-7" id="emailname" name="emailname" value="{{Config::get('site.emailname')}}">
                             </div>
 
+
+                            <div class="form-group">
+                                <label for="mailchimp_apikey">Mailchimp API KEY</label>
+                                <input type="text" class="form-control col-md-10 col-lg-7" id="mailchimp_apikey" name="mailchimp_apikey" value="{{config('mailchimp.apikey')}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mailchimp_listid">Mailchimp List ID</label>
+                                <input type="text" class="form-control col-md-10 col-lg-7" id="mailchimp_listid" name="mailchimp_listid" value="{{config('mailchimp.listid')}}">
+                            </div>
+
                             <input type="submit" name="submit" value="submit" class="text-center btn btn-success">
 
                         </form>

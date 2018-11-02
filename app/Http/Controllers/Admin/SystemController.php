@@ -55,7 +55,24 @@ class SystemController extends Controller
         $emailname->value = $request->emailname;
         $emailname->save();
 
-       return redirect()->back()->with('status','Setting Successfully Updated.');
+
+        $mailchimpapi =   Laraption::firstOrNew([
+            'key' => 'mailchimp.apikey'
+        ]);
+        $mailchimpapi->value = $request->mailchimp_apikey;
+        $mailchimpapi->save();
+
+
+
+        $mailchim_listid =   Laraption::firstOrNew([
+            'key' => 'mailchimp.listid'
+        ]);
+        $mailchim_listid->value = $request->mailchimp_listid;
+        $mailchim_listid->save();
+
+
+
+        return redirect()->back()->with('status','Setting Successfully Updated.');
     }
 
 
