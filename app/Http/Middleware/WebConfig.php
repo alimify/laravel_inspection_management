@@ -32,10 +32,10 @@ class WebConfig
             }
         }
 
-        $mailchimps = Laraption::where('key','REGEXP','mailchimp.')->get();
+        $mailchimps = Laraption::where('key','REGEXP','newsletter.')->get();
 
         foreach ($mailchimps as $mailchimp){
-            config($mailchimp->key,$mailchimp->value);
+            Config::set($mailchimp->key,$mailchimp->value);
         }
         //var_dump(\config('mailchimp.apikey'));
         //var_dump(\config('mailchimp.listid'));

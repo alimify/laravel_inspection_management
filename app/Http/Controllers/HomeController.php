@@ -49,7 +49,7 @@ class HomeController extends Controller
 
 
     public function frontForm(){
-        var_dump(config('mailchimp_apikey').'here');
+       //var_dump(config('newsletter.lists.subscribers.id'));
 
         return response()->view('public.reform');
     }

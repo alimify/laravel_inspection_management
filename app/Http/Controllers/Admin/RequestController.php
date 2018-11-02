@@ -7,7 +7,7 @@ use App\Laraption;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Spatie\Newsletter\Newsletter;
+use Newsletter;
 
 class RequestController extends Controller
 {
@@ -109,9 +109,8 @@ class RequestController extends Controller
             $client->descriptions = $request->message;
             $client->save();
 
-            if(!Newsletter::isSubscribed($client->email)){
-                Newsletter::subscribe($client->email);
-            }
+            Newsletter::subscribeOrUpdate($client->email,[ 'NAME' => $client->name ]);
+
 
 
             $mailb = Laraption::where('key','=','to.client.request.response.accept')->first();

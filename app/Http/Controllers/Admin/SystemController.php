@@ -57,7 +57,7 @@ class SystemController extends Controller
 
 
         $mailchimpapi =   Laraption::firstOrNew([
-            'key' => 'mailchimp.apikey'
+            'key' => 'newsletter.apiKey'
         ]);
         $mailchimpapi->value = $request->mailchimp_apikey;
         $mailchimpapi->save();
@@ -65,7 +65,7 @@ class SystemController extends Controller
 
 
         $mailchim_listid =   Laraption::firstOrNew([
-            'key' => 'mailchimp.listid'
+            'key' => 'newsletter.lists.subscribers.id'
         ]);
         $mailchim_listid->value = $request->mailchimp_listid;
         $mailchim_listid->save();

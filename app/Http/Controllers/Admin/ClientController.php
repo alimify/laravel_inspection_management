@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Spatie\Newsletter\Newsletter;
+use Newsletter;
 
 class ClientController extends Controller
 {
@@ -53,9 +53,8 @@ class ClientController extends Controller
         $client->descriptions         = $request->descriptions;
         $client->save();
 
-        if(!Newsletter::isSubscribed($client->email)){
-            Newsletter::subscribe($client->email);
-        }
+        Newsletter::subscribeOrUpdate($client->email,[ 'NAME' => $client->name ]);
+
 
         return redirect()->route('admin.client.index')->with('status','New Client Added..');
     }
@@ -107,9 +106,7 @@ class ClientController extends Controller
         $client->descriptions       = $request->descriptions;
         $client->save();
 
-        if(!Newsletter::isSubscribed($client->email)){
-            Newsletter::subscribe($client->email);
-        }
+        Newsletter::subscribeOrUpdate($client->email,[ 'NAME' => $client->name ]);
 
         return redirect()->back()->with('status','Client Data Successfully Updated..');
     }
