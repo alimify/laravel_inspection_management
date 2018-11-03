@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Laraption;
 use App\Models\Client;
+use App\Models\RequestCategory;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,8 +51,9 @@ class HomeController extends Controller
 
     public function frontForm(){
        //var_dump(config('newsletter.lists.subscribers.id'));
+        $services = RequestCategory::all();
 
-        return response()->view('public.reform');
+        return response()->view('public.reqform',compact('services'));
     }
 
     public function frontFormSubmit(Request $request){
@@ -70,6 +72,7 @@ class HomeController extends Controller
        $rquest->phone = $request->phone;
        $rquest->address = $request->address;
        $rquest->message = $request->message;
+       $rquest->request_category_id = $request->service_type;
        $rquest->status = 1;
        $rquest->save();
 

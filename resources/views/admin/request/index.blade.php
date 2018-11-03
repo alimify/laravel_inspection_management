@@ -24,6 +24,7 @@
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>Address</th>
+                                <th>Type</th>
                                 <th>Status</th>
                                 <th>Date</th>
                                 <th>Action</th>
@@ -36,6 +37,7 @@
                                     <td>{{$request->phone}}</td>
                                     <td>{{$request->email}}</td>
                                     <td>{{$request->address}}</td>
+                                    <td>{{$request->Type->title??''}}</td>
                                     <td>
                                         @if($request->status == 1)
                                             <span class="btn btn-warning">Waiting</span>

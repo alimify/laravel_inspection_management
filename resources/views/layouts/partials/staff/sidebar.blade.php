@@ -13,7 +13,7 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark" href="{{route('staff.task.index')}}" aria-expanded="false">
-                        <i class="mdi mdi-av-timer"></i>
+                        <i class="fas fa-tasks"></i>
                         <span class="hide-menu">Task </span>
                     </a>
                 </li>

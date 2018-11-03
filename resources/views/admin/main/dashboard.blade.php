@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-7">
-                                <i class="mdi mdi-emoticon font-20 text-info"></i>
+                                <i class="mdi mdi-basket font-20 text-info"></i>
                                 <p class="font-16 m-b-5">Task</p>
                             </div>
                             <div class="col-5">
@@ -35,7 +35,7 @@
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-7">
-                                <i class="mdi mdi-image font-20 text-success"></i>
+                                <i class="mdi mdi-account-alert font-20 text-success"></i>
                                 <p class="font-16 m-b-5">Request</p>
                             </div>
                             <div class="col-5">
@@ -50,7 +50,7 @@
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-7">
-                                <i class="mdi mdi-currency-eur font-20 text-purple"></i>
+                                <i class="fa fa-users font-20 text-purple"></i>
                                 <p class="font-16 m-b-5">Clients</p>
                             </div>
                             <div class="col-5">
@@ -65,7 +65,7 @@
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-7">
-                                <i class="mdi mdi-poll font-20 text-danger"></i>
+                                <i class="fa fa-user-secret font-20 text-danger"></i>
                                 <p class="font-16 m-b-5">Staff</p>
                             </div>
                             <div class="col-5">
@@ -102,7 +102,7 @@
                             <div class="ml-auto">
                                 <div class="dl m-b-10">
                                     <select class="custom-select border-0 text-muted">
-                                        <option value="0" selected="">2018</option>
+                                        <option value="0" selected="">{{\Carbon\Carbon::now()->year}}</option>
                                     </select>
                                 </div>
                             </div>

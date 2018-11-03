@@ -16,7 +16,7 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.task.index')}}" aria-expanded="false">
-                        <i class="mdi mdi-av-timer"></i>
+                        <i class="fas fa-tasks"></i>
                         <span class="hide-menu">Task </span>
                     </a>
                 </li>
@@ -24,28 +24,35 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.request.index')}}" aria-expanded="false">
-                        <i class="mdi mdi-av-timer"></i>
+                        <i class="fab fa-accusoft"></i>
                         <span class="hide-menu">Request </span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.requestCategory.index')}}" aria-expanded="false">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span class="hide-menu">Request Type</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.client.index')}}" aria-expanded="false">
-                        <i class="mdi mdi-av-timer"></i>
+                        <i class="fas fa-users"></i>
                         <span class="hide-menu">Client </span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.user.index')}}" aria-expanded="false">
-                        <i class="mdi mdi-av-timer"></i>
+                        <i class="fas fa-user"></i>
                         <span class="hide-menu">User </span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.system.setting')}}" aria-expanded="false">
-                        <i class="mdi mdi-av-timer"></i>
+                        <i class="fas fa-cog"></i>
                         <span class="hide-menu">System Setting </span>
                     </a>
                 </li>
@@ -53,7 +60,7 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.system.setting.mail.index')}}" aria-expanded="false">
-                        <i class="mdi mdi-av-timer"></i>
+                        <i class="fa fa-envelope"></i>
                         <span class="hide-menu">Mail Template </span>
                     </a>
                 </li>
