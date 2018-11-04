@@ -19,8 +19,7 @@
                                 <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling" value="1" {{$inspection && $inspection->ceiling ? 'checked':''}}> Yes
                                 <input type="radio" class="form-check form-check-inline ml-2" id="ceiling" name="ceiling" value="2" {{$inspection && !$inspection->ceiling ? 'checked':''}}> No
                                 <div class="row">
-                                    <label for="ceiling_attachment">Attachment</label>
-                                    <input class="form-control-file" name="ceiling_attachment" type="file">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="ceiling">
                                 </div>
                             </div>
 
@@ -31,8 +30,7 @@
                                 <input type="radio" class="form-check form-check-inline ml-2" id="walls" name="walls" value="1"{{$inspection && $inspection->walls ? ' checked':''}}> Yes
                                 <input type="radio" class="form-check form-check-inline ml-2" id="walls" name="walls" value="2"{{$inspection && !$inspection->walls ? 'checked':''}}> No
                                 <div class="row">
-                                    <label for="ceiling_attachment">Attachment</label>
-                                    <input class="form-control-file" name="walls_attachment" type="file">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="walls">
                                 </div>
                             </div>
 
@@ -42,8 +40,7 @@
                                 <input type="radio" class="form-check form-check-inline ml-2" id="floors" name="floors" value="1"{{$inspection && $inspection->floors ? 'checked':''}}> Yes
                                 <input type="radio" class="form-check form-check-inline ml-2" id="floors" name="floors" value="2"{{$inspection && !$inspection->floors ? 'checked':''}}> No
                                 <div class="row">
-                                    <label for="ceiling_attachment">Attachment</label>
-                                    <input class="form-control-file" name="floors_attachment" type="file">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="floors">
                                 </div>
                             </div>
 
@@ -54,8 +51,7 @@
                                 <input type="radio" class="form-check form-check-inline ml-2" id="baseboard" name="baseboard" value="1"{{$inspection && $inspection->baseboard ? 'checked':''}}> Yes
                                 <input type="radio" class="form-check form-check-inline ml-2" id="baseboard" name="baseboard" value="2"{{$inspection && !$inspection->baseboard ? 'checked':''}}> No
                                 <div class="row">
-                                    <label for="ceiling_attachment">Attachment</label>
-                                    <input class="form-control-file" name="baseboards_attachment" type="file">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="baseboards">
                                 </div>
                             </div>
 
@@ -67,24 +63,21 @@
                                 <input type="radio" class="form-check form-check-inline ml-2" id="windows_damaged" name="windows_damaged" value="1"{{$inspection && $inspection->windows_damaged ? 'checked':''}}> Yes
                                 <input type="radio" class="form-check form-check-inline ml-2" id="windows_damaged" name="windows_damaged" value="2"{{$inspection && !$inspection->windows_damaged ? 'checked':''}}> No
                                 <div class="row mt-2 mb-2">
-                                    <small>Attachment</small>
-                                    <input class="form-control-file" name="ceiling_attachment" type="file">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="window_damaged">
                                 </div>
 
                                 <h6>SECURED?</h6>
                                 <input type="radio" class="form-check form-check-inline ml-2" id="windows_secured" name="windows_secured" value="1"{{$inspection && $inspection->windows_secured ? 'checked':''}}> Yes
                                 <input type="radio" class="form-check form-check-inline ml-2" id="windows_secured" name="windows_secured" value="2"{{$inspection && !$inspection->windows_secured ? 'checked':''}}> No
                                 <div class="row mt-2 mb-2">
-                                    <small>Attachment</small>
-                                    <input class="form-control-file" name="ceiling_attachment" type="file">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="window_secured">
                                 </div>
 
                                 <h6>EVIDENCE OF WATER INTRUSION?</h6>
                                 <input type="radio" class="form-check form-check-inline ml-2" id="windows_evidence" name="windows_evidence" value="1"{{$inspection && $inspection->windows_evidence ? 'checked':''}}> Yes
                                 <input type="radio" class="form-check form-check-inline ml-2" id="windows_evidence" name="windows_evidence" value="2"{{$inspection && !$inspection->windows_evidence ? 'checked':''}}> No
                                 <div class="row mt-2 mb-2">
-                                    <small>Attachment</small>
-                                    <input class="form-control-file" name="ceiling_attachment" type="file">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="window_evidence">
                                 </div>
 
                             </div>
@@ -101,8 +94,7 @@
                                 <input type="radio" class="form-check form-check-inline ml-2" id="toilets_leak" name="toilets_leak" value="1"{{$inspection && $inspection->toilets_leak ? 'checked':''}}> Yes
                                 <input type="radio" class="form-check form-check-inline ml-2" id="toilets_leak" name="toilets_leak" value="2"{{$inspection && !$inspection->toilets_leak ? 'checked':''}}> No
                                 <div class="row">
-                                    <label for="ceiling_attachment">Attachment</label>
-                                    <input class="form-control-file" name="ceiling_attachment" type="file">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="toilets_leak">
                                 </div>
                             </div>
 
@@ -111,8 +103,7 @@
                                 <input type="radio" class="form-check form-check-inline ml-2" id="faucets_dripping_water" name="faucets_dripping_water" value="1"{{$inspection && $inspection->faucets_dripping_water ? 'checked':''}}> Yes
                                 <input type="radio" class="form-check form-check-inline ml-2" id="faucets_dripping_water" name="faucets_dripping_water" value="2"{{$inspection && !$inspection->faucets_dripping_water ? 'checked':''}}> No
                                 <div class="row">
-                                    <label for="ceiling_attachment">Attachment</label>
-                                    <input class="form-control-file" name="ceiling_attachment" type="file">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="faucets_dripping_water">
                                 </div>
                             </div>
 
@@ -122,8 +113,7 @@
                                 <input type="radio" class="form-check form-check-inline ml-2" id="evidence_leak_under_sink" name="evidence_leak_under_sink" value="1"{{$inspection && $inspection->evidence_leak_under_sink ? 'checked':''}}> Yes
                                 <input type="radio" class="form-check form-check-inline ml-2" id="evidence_leak_under_sink" name="evidence_leak_under_sink" value="2"{{$inspection && !$inspection->evidence_leak_under_sink ? 'checked':''}}> No
                                 <div class="row">
-                                    <label for="ceiling_attachment">Attachment</label>
-                                    <input class="form-control-file" name="ceiling_attachment" type="file">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="evidence_leak_under_sink">
                                 </div>
                             </div>
 
@@ -141,8 +131,7 @@
                                 <input type="radio" class="form-check form-check-inline ml-2" id="unit_operational" name="unit_operational" value="1"{{$inspection && $inspection->unit_operational ? 'checked':''}}> Yes
                                 <input type="radio" class="form-check form-check-inline ml-2" id="unit_operational" name="unit_operational" value="2"{{$inspection && !$inspection->unit_operational ? 'checked':''}}> No
                                 <div class="row">
-                                    <label for="ceiling_attachment">Attachment</label>
-                                    <input class="form-control-file" name="ceiling_attachment" type="file">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="unit_operational">
                                 </div>
                             </div>
 
@@ -151,8 +140,7 @@
                                 <input type="radio" class="form-check form-check-inline ml-2" id="hvac_evidence" name="hvac_evidence" value="1"{{$inspection && $inspection->hvac_evidence ? 'checked':''}}> Yes
                                 <input type="radio" class="form-check form-check-inline ml-2" id="hvac_evidence" name="hvac_evidence" value="2"{{$inspection && !$inspection->hvac_evidence ? 'checked':''}}> No
                                 <div class="row">
-                                    <label for="ceiling_attachment">Attachment</label>
-                                    <input class="form-control-file" name="ceiling_attachment" type="file">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="hvac_evidence">
                                 </div>
                             </div>
 
@@ -162,8 +150,7 @@
                                 <input type="radio" class="form-check form-check-inline ml-2" id="hvac_filter_change_need" name="hvac_filter_change_need" value="1"{{$inspection && $inspection->hvac_filter_change_need ? 'checked':''}}> Yes
                                 <input type="radio" class="form-check form-check-inline ml-2" id="hvac_filter_change_need" name="hvac_filter_change_need" value="2"{{$inspection && !$inspection->hvac_filter_change_need ? 'checked':''}}> No
                                 <div class="row">
-                                    <label for="ceiling_attachment">Attachment</label>
-                                    <input class="form-control-file" name="ceiling_attachment" type="file">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="hvac_filter_change_need">
                                 </div>
                             </div>
 
@@ -185,8 +172,7 @@
                                 <input type="radio" class="form-check form-check-inline ml-2" id="electrical_light_switch" name="electrical_light_switch" value="1"{{$inspection && $inspection->electrical_light_switch ? 'checked':''}}> Yes
                                 <input type="radio" class="form-check form-check-inline ml-2" id="electrical_light_switch" name="electrical_light_switch" value="2"{{$inspection && !$inspection->electrical_light_switch ? 'checked':''}}> No
                                 <div class="row">
-                                    <label for="ceiling_attachment">Attachment</label>
-                                    <input class="form-control-file" name="ceiling_attachment" type="file">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="electrical_light_switch">
                                 </div>
                             </div>
 
@@ -238,8 +224,7 @@
                                 <input type="radio" class="form-check form-check-inline ml-2" id="pest_treatment" name="pest_treatment" value="1"{{$inspection && $inspection->pest_treatment ? 'checked':''}}> Yes
                                 <input type="radio" class="form-check form-check-inline ml-2" id="pest_treatment" name="pest_treatment" value="2"{{$inspection && !$inspection->pest_treatment ? 'checked':''}}> No
                                 <div class="row">
-                                    <label for="ceiling_attachment">Attachment</label>
-                                    <input class="form-control-file" name="ceiling_attachment" type="file">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="pest_treatment">
                                 </div>
                             </div>
                         </div>

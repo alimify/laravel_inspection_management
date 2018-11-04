@@ -20,5 +20,5 @@
 
 
 @push('script')
-
+    @include('public.gallery')
 @endpush

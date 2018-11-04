@@ -109,5 +109,4 @@ class InspectionController extends Controller
 
         return redirect()->back()->with('status','Form Submitted Successfully.');
     }
-
 }

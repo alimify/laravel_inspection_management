@@ -40,9 +40,10 @@
 
     @endif
 
+
 @endsection
 
 
 @push('script')
-
+    @include('public.gallery')
 @endpush

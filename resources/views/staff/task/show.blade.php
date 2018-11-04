@@ -4,7 +4,6 @@
 
 @push('css')
 
-
 @endpush
 
 
@@ -30,11 +29,13 @@
             </div>
         </div>
     </div>
+
+
     @include('staff.inspection.form.'.$task->category_id)
 
 @endsection
 
 
 @push('script')
-
+    @include('public.gallery')
 @endpush

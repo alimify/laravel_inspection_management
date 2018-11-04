@@ -13,23 +13,35 @@
                         <div class="form-group pb-2">
                             <label for="title">CEILINGS</label>
                             <h6>EVIDENCE OF WATER INTRUSION/DAMAGE?    -   <span class="font-weight-bold">{{$inspection->ceiling ? 'Yes':'No'}}</span></h6>
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="ceiling">
+                            </div>
                         </div>
 
 
                         <div class="form-group pb-2">
                             <label for="title">WALLS</label>
                             <h6>EVIDENCE OF WATER INTRUSION/DAMAGE?    -  <span class="font-weight-bold">{{$inspection->walls ? 'Yes':'No'}}</span></h6>
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="walls">
+                            </div>
                         </div>
 
                         <div class="form-group pb-2">
                             <label for="title">FLOORS</label>
                             <h6>EVIDENCE OF WATER INTRUSION/DAMAGE?    -  <span class="font-weight-bold">{{$inspection->floors ? 'Yes':'No'}}</span></h6>
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="floors">
+                            </div>
                         </div>
 
 
                         <div class="form-group pb-2">
                             <label for="title">BASEBOARDS</label>
                             <h6>EVIDENCE OF WATER INTRUSION/DAMAGE?  - <span class="font-weight-bold">{{$inspection->baseboard ? 'Yes':'No'}}</span></h6>
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="baseboards">
+                            </div>
                         </div>
 
 
@@ -37,10 +49,21 @@
                         <div class="form-group pb-2">
                             <label for="title">WINDOWS/SLINDING GLASS DOORS:</label>
                             <h6>DAMAGED?  - <span class="font-weight-bold">{{$inspection->windows_damaged ? 'Yes':'No'}}</span></h6>
+                            <div class="row mt-2 mb-2">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="window_damaged">
+                            </div>
 
                             <h6>SECURED? - <span class="font-weight-bold">{{$inspection->windows_secured ? 'Yes':'No'}}</span></h6>
+                            <div class="row mt-2 mb-2">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="window_secured">
+                            </div>
 
                             <h6>EVIDENCE OF WATER INTRUSION? - <span class="font-weight-bold">{{$inspection->windows_evidence ? 'Yes':'No'}}</span></h6>
+
+                            <div class="row mt-2 mb-2">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="window_evidence">
+                            </div>
+
                         </div>
                     </div>
 
@@ -52,16 +75,26 @@
 
                         <div class="form-group pb-2">
                             <h6>TOILETS LEAKING?  - <span class="font-weight-bold">{{$inspection->toilets_leak ? 'Yes':'No'}}</span></h6>
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="toilets_leak">
+                            </div>
                         </div>
 
                         <div class="form-group pb-2">
                             <h6>FAUCETS DRIPPING WATER?  - <span class="font-weight-bold">{{$inspection->faucets_dripping_water ? 'Yes':'No'}}</span></h6>
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="faucets_dripping_water">
+                            </div>
+
                         </div>
 
 
                         <div class="form-group pb-2">
                             <h6>EVIDENCE OF ANY LEAKS UNDER SINKS?  - <span class="font-weight-bold">{{$inspection->evidence_leak_under_sink ? 'Yes':'No'}}</span></h6>
-                         </div>
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="evidence_leak_under_sink">
+                            </div>
+                        </div>
                     </div>
 
 
@@ -73,15 +106,26 @@
 
                         <div class="form-group pb-2">
                             <h6>DOES UNIT APPEAR TO BE OPERATIONAL?  - <span class="font-weight-bold">{{$inspection->unit_operational ? 'Yes':'No'}}</span></h6>
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="unit_operational">
+                            </div>
                         </div>
 
                         <div class="form-group pb-2">
                             <h6>EVIDENCE OF LEAKING?  - <span class="font-weight-bold">{{$inspection->hvac_evidence ? 'Yes':'No'}}</span></h6>
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="hvac_evidence">
+                            </div>
+
                         </div>
 
 
                         <div class="form-group pb-2">
                             <h6>DOES THE FILTER NEED TO BE CHANGED?  - <span class="font-weight-bold">{{$inspection->hvac_filter_change_need ? 'Yes':'No'}}</span></h6>
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="hvac_filter_change_need">
+                            </div>
+
                         </div>
 
 
@@ -98,6 +142,9 @@
 
                         <div class="form-group pb-2">
                             <h6>LIGHT SWITCHES: ARE THEY WORKING?  - <span class="font-weight-bold">{{$inspection->electrical_light_switch ? 'Yes':'No'}}</span></h6>
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="electrical_light_switch">
+                            </div>
                         </div>
 
                     </div>
@@ -145,6 +192,10 @@
                         <h4>PEST:</h4>
                         <div class="form-group pb-2">
                             <h6>TREATMENT NEEDED?  - <span class="font-weight-bold">{{$inspection->pest_treatment ? 'Yes':'No'}}</span></h6>
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="pest_treatment">
+                            </div>
+                        
                         </div>
                     </div>
 
