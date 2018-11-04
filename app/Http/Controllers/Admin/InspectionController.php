@@ -37,7 +37,9 @@ class InspectionController extends Controller
             ]),
             '#taskTitle#' => $task->title,
             '#staff#'  => $user->name,
-            '#client#' => $client->name
+            '#client#' => $client->name,
+            '#propertyaddress#' => $task->address,
+            '#inspectiondate#'  => $task->Inspection->created_at??''
         ];
 
         $mailbody = $mailb ? strtr($mailb->body,$mailRarray) : '';
