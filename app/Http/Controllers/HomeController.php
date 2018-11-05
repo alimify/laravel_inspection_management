@@ -38,6 +38,12 @@ class HomeController extends Controller
 
     public function indexoriginal(){
 
+        $redirectto = $this->redirecttodashboard();
+
+        if($redirectto){
+            return redirect()->route($redirectto);
+        }
+
         $html = Laraption::where('key','index.html')->first();
         $html = $html ? str_replace('#requestLink#',route('frontForm'),$html->value) : '';
 
