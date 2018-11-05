@@ -234,4 +234,31 @@ class SystemController extends Controller
         return redirect()->back()->with('status','Mail Template Updated..');
     }
 
+
+
+
+    public function homeHTML(){
+
+
+        $html = Laraption::where('key','index.html')->first();
+        $html = $html ? $html->value : '';
+
+        return response()->view('admin.system.home',compact('html'));
+    }
+
+
+    public function homeHTMLUpdate(Request $request){
+
+        $html = Laraption::firstOrNew([
+            'key' => 'index.html'
+        ]);
+
+        $html->value = $request->html;
+        $html->save();
+
+        return redirect()->back()
+                          ->with('status','HTML Updated Successfully.');
+
+    }
+
 }

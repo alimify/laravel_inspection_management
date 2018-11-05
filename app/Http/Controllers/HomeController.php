@@ -36,6 +36,14 @@ class HomeController extends Controller
         return redirect()->route('index');
     }
 
+    public function indexoriginal(){
+
+        $html = Laraption::where('key','index.html')->first();
+        $html = $html ? str_replace('#requestLink#',route('frontForm'),$html->value) : '';
+
+        return response()->view('index',compact('html'));
+    }
+
 
     public function frontForm(){
         $redirectto = $this->redirecttodashboard();
@@ -72,7 +80,7 @@ class HomeController extends Controller
 
 
         $mailRarray = [
-            '#userName#' => $request->name
+            '#client#' => $request->name
         ];
 
 

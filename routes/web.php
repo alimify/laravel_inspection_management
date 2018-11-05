@@ -11,8 +11,10 @@
 |
 */
 
-Route::get('/','HomeController@frontForm')->name('index');
-Route::put('/','HomeController@frontFormSubmit')->name('frontFormSubmit');
+Route::get('/','HomeController@indexoriginal')->name('index');
+
+Route::get('/request','HomeController@frontForm')->name('frontForm');
+Route::put('/request','HomeController@frontFormSubmit')->name('frontFormSubmit');
 Route::get('/confirm/task/{task}/{client}','HomeController@confirmTask')->name('confirmTask');
 
 
@@ -40,6 +42,8 @@ Route::group(['as' => 'admin.','prefix' => 'admin','namespace' => 'Admin','middl
     Route::post('system/setting','SystemController@update')->name('system.setting.update');
     Route::get('system/setting/mail','SystemController@mailTemplate')->name('system.setting.mail.index');
     Route::put('system/setting/mail','SystemController@mailTemplateUpdate')->name('system.setting.mail.update');
+    Route::get('system/setting/homehtml','SystemController@homeHTML')->name('homeHTML');
+    Route::put('system/setting/homehtml','SystemController@homeHTMLUpdate')->name('homeHTMLUpdate');
 
 
 

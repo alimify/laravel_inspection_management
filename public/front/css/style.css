@@ -1,0 +1,129 @@
+/*home page css */
+.section_title {
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.section_title h2 {
+    text-align: center;
+    text-transform: capitalize;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 7px;
+    color: #333;
+}
+
+.single_service h2 {
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 27px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    color: #363f4d;
+}
+
+.section_title h2:after {
+    position: absolute;
+    content: "";
+    clear: both;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #555;
+}
+
+.service_button {
+    width: 210px;
+    height: 50px;
+    line-height: 50px;
+    background: #161616;
+    border-radius: 2px;
+}
+
+.service_btn_area {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.service_button:hover {
+    background: #161616;
+    color: #fff;
+    opacity: 0.85;
+}
+
+.single_service {
+    padding: 20px;
+    box-shadow: 0 10px 40px -11px rgba(131,174,219,.5);
+}
+
+.single_service p {
+    padding-bottom: 15px;
+}
+
+.about_area {
+    padding-bottom: 0;
+}
+.menu-area {
+    padding: 20px 0;
+}
+.service_icon {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    background: #ddd;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 35px;
+    color: #333;
+}
+/*home page css end */
+/*thanks page css */
+.thanks_area{
+    background-image: url('assest/img/thbg.jpg');
+    position: relative;
+}
+.header_area_th {
+    position: absolute;
+    top: auto;
+    padding: 20px;
+    width: 100%;
+    z-index: 2;
+}
+
+.header_logo_th {
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+.thanks_area h2 {
+    text-align: center;
+    text-transform: capitalize;
+    color: #fff;
+    font-size: 70px;
+    letter-spacing: 4px;
+    padding-bottom: 25px
+}
+.thanks_area:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background: #00000087;
+    z-index: 1;
+}
+
+.thanks_content {
+    z-index: 2;
+    position: relative;
+    color: #fff;
+}
+.thanks_content p {
+    font-size: 18px;
+    line-height: 31px;
+}
+/*thanks page css end */
