@@ -49,14 +49,21 @@
                         <span class="hide-menu">User </span>
                     </a>
                 </li>
-
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.system.setting')}}" aria-expanded="false">
-                        <i class="fas fa-cog"></i>
-                        <span class="hide-menu">System Setting </span>
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="fa fa-cogs"></i>
+                        <span class="hide-menu">Setting </span>
                     </a>
-                </li>
+                    <ul aria-expanded="false" class="collapse  first-level">
 
+
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.system.setting')}}" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <span class="hide-menu">System Setting </span>
+                            </a>
+                        </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.system.setting.mail.index')}}" aria-expanded="false">
@@ -65,6 +72,17 @@
                     </a>
                 </li>
 
+
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.homeHTML')}}" aria-expanded="false">
+                                <i class="fa fa-edit"></i>
+                                <span class="hide-menu">Homepage HTML </span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
 
 
             </ul>
