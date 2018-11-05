@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\MailSender;
+use App\Laraption;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -56,6 +58,8 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
+        $this->emailinfo($request,$user);
+
         return redirect()->route('admin.user.index')->with('status','New User Created Successfully');
     }
 
@@ -93,6 +97,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $this->validate($request,[
             'name' => 'required|min:5|max:50',
             'email' => 'required|email|unique:users,email,'.$id,
@@ -104,16 +109,19 @@ class UserController extends Controller
                 'password' => 'string|min:6|confirmed'
             ]);
         }
-
-
         $user = User::find($id);
+        $emailinfo = ($request->email != $user->email) || ($request->password);
         $user->name = $request->name;
-        $user->role_id = $request->role;
         $user->email = $request->email;
+        $user->role_id = $request->role;
         if($request->password) {
             $user->password = Hash::make($request->password);
         }
         $user->save();
+
+        if($emailinfo){
+            $this->emailinfo($request,$user);
+        }
 
         return redirect()->back()->with('status','User Updated Successfully');
     }
@@ -130,5 +138,30 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->back()->with('status','User Successfully Deleted.');
+    }
+
+
+    private function emailinfo($request,$user){
+        $mailb = Laraption::where('key','=','to.user.accountinfo')->first();
+        $mailb = json_decode($mailb ? $mailb->value : null);
+
+        $mailRarray = [
+            '#user#' => $user->name,
+            '#email#' => $user->email,
+            '#password#'  => $request->password??''
+        ];
+
+        $mailbody = $mailb ? str_replace(array_keys($mailRarray),$mailRarray,$mailb->body) : '';
+        $mailtitle = $mailb? $mailb->title : 'Your account information.';
+
+        $data = [
+            'to' => $user->email,
+            'name' => $user->name,
+            'subject' => $mailtitle,
+            'body' => $mailbody,
+            'file'  => false
+        ];
+
+        MailSender::send('mail.task',$data);
     }
 }

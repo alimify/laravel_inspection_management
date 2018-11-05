@@ -149,6 +149,51 @@
             </div>
         </div>
 
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-body">
+                    <h4 class="card-title">User Account Info</h4>
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">
+
+                            <div class="form-group">
+                                <label for="user_accountinfo_title">Title</label>
+                                <input type="text" class="form-control" id="user_accountinfo_title" name="user_accountinfo_title" value="{{$user_accountinfo->title??''}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="user_accountinfo_body">Body</label>
+                                <textarea class="form-control" name="user_accountinfo_body" id="user_accountinfo_body">{{$user_accountinfo->body??''}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-body">
+                    <h4 class="card-title">Staff Task Submit to Admin</h4>
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">
+
+                            <div class="form-group">
+                                <label for="tasktoadmin_title">Title</label>
+                                <input type="text" class="form-control" id="tasktoadmin_title" name="tasktoadmin_title" value="{{$client_task_admin->title??''}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="tasktoadmin_body">Body</label>
+                                <textarea class="form-control" name="tasktoadmin_body" id="tasktoadmin_body">{{$client_task_admin->body??''}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="text-center">
         <input type="submit" class="btn btn-success col-4" name="submit" value="Submit">
         </div>

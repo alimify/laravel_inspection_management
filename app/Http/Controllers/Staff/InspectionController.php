@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers\Staff;
 
+use App\Http\Controllers\MailSender;
+use App\Laraption;
 use App\Models\Inspection;
 use App\Models\Notification;
 use App\Models\Task;
 use App\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class InspectionController extends Controller
 {
 
+    private $task = false;
 
 
     public function submitForm(Request $request,Task $task){
@@ -62,7 +64,7 @@ class InspectionController extends Controller
         $task->status_id = 2;
         $task->save();
 
-
+        $this->task = $task;
         $this->sentToAdmin('task',$task->id,route('admin.task.show',$task->id),'Task Submitted',$task->title);
 
         return redirect()->back()->with('status','Form Submitted Successfully.');
@@ -90,7 +92,36 @@ class InspectionController extends Controller
             $notification->description = $description;
             $notification->save();
 
+            $this->emailToAdmin($user);
         }
      }
 
+
+
+     private function emailToAdmin($user){
+
+         $mailRarray = [
+             '#admin#' => $user->name,
+             '#taskTitle' => $this->task->title,
+             '#taskLink'  => route('admin.task.show',$this->task->id)
+         ];
+
+         $mailb = Laraption::where('key','=','to.admin.task.submit')->first();
+         $mailb = json_decode($mailb ? $mailb->value : null);
+         $mailbody = $mailb ? str_replace(array_keys($mailRarray),$mailRarray,$mailb->body) : '';
+
+         $mailtitle = $mailb ? $mailb->title : 'A Task has been submitted.';
+
+
+         $data = [
+             'to' => $user->email,
+             'name' => $user->name,
+             'subject' => $mailtitle,
+             'body' => $mailbody,
+             'file'  => false
+         ];
+
+         MailSender::send('mail.request',$data);
+
+     }
 }

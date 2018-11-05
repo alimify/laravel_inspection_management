@@ -99,8 +99,16 @@ class SystemController extends Controller
         $client_task_confirm  = Laraption::where('key','=','to.client.task.confirm.request')->first();
         $client_task_confirm = $client_task_confirm ? json_decode($client_task_confirm->value) : '';
 
+
+        $user_accountinfo = Laraption::where('key','=','to.user.accountinfo')->first();
+        $user_accountinfo = $user_accountinfo ? json_decode($user_accountinfo->value) : '';
+
+        $client_task_admin  = Laraption::where('key','=','to.admin.task.submit')->first();
+        $client_task_admin = $client_task_admin ? json_decode($client_task_admin->value) : '';
+
         return response()->view('admin.system.mail',compact('client_request','client_request_accept',
-          'client_request_decline','staff_assign_task','staff_update_task','client_task_confirm'));
+          'client_request_decline','staff_assign_task','staff_update_task','client_task_confirm',
+            'user_accountinfo','client_task_admin'));
     }
 
     public function mailTemplateUpdate(Request $request){
@@ -194,6 +202,33 @@ class SystemController extends Controller
 
         $client_task_thanks->save();
 
+
+
+        /*AccountInfo*/
+
+        $user_accountinfo = Laraption::firstOrNew([
+            'key' => 'to.user.accountinfo'
+        ]);
+
+        $user_accountinfo->value = json_encode([
+            'title' => $request->user_accountinfo_title,
+            'body'  => $request->user_accountinfo_body
+        ]);
+
+        $user_accountinfo->save();
+
+
+
+        $tasktoadmin = Laraption::firstOrNew([
+            'key' => 'to.admin.task.submit'
+        ]);
+
+        $tasktoadmin->value = json_encode([
+            'title' => $request->tasktoadmin_title,
+            'body'  => $request->tasktoadmin_body
+        ]);
+
+        $tasktoadmin->save();
 
 
         return redirect()->back()->with('status','Mail Template Updated..');

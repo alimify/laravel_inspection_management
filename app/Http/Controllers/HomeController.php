@@ -28,28 +28,22 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $redirectto = $this->redirecttodashboard();
 
-       if(Auth::check() && Auth::user()->role_id == 1){
-
-            $redirectto ='admin.dashboard.index';
-
-        }elseif(Auth::check() && Auth::user()->role_id == 2){
-
-            $redirectto = 'staff.dashboard.index';
-
-        }else{
-
-            $redirectto = 'index';
-
+        if($redirectto){
+            return redirect()->route($redirectto);
         }
-
-        //return response()->view('public.reform');
-
-        return redirect()->route($redirectto);
+        return redirect()->route('index');
     }
 
 
     public function frontForm(){
+        $redirectto = $this->redirecttodashboard();
+
+        if($redirectto){
+            return redirect()->route($redirectto);
+        }
+
        //var_dump(config('newsletter.lists.subscribers.id'));
         $services = RequestCategory::all();
 
@@ -124,4 +118,21 @@ class HomeController extends Controller
     }
 
 
+    private function redirecttodashboard(){
+
+        $redirectto = false;
+
+        if(Auth::check() && Auth::user()->role_id == 1){
+
+            $redirectto ='admin.dashboard.index';
+
+        }elseif(Auth::check() && Auth::user()->role_id == 2){
+
+            $redirectto = 'staff.dashboard.index';
+
+        }
+
+        return $redirectto;
+
+    }
 }

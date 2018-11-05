@@ -66,7 +66,21 @@ class AttachmentController extends Controller
     }
 
     public function delete(Request $request,$id){
+        if(!$request->file){
+            return response()->json([
+                'status' => true
+            ]);
+        }
 
+        $file = str_replace('/storage/','',$request->file);
+
+        if(Storage::disk('public')->exists($file)){
+            Storage::disk('public')->delete($file);
+        }
+
+        return response()->json([
+            'status' => $file
+        ]);
     }
 
 

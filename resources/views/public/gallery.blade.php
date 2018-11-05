@@ -7,10 +7,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
-                <form action="" class="form-inline mb-1">
-                    <input type="file" name="file" class="form-control-file form-control col-9 form-inline" id="upload-file">
-                    <input type="button" value="UPLOAD" class="btn btn-success" id="upload-button">
-                </form>
+                    <input type="file" name="file" class="form-control-file form-control form-inline" id="upload-file">
                 <div class="progress mb-3">
                     <div id="upload-progress-bar" class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%;display: none;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
@@ -42,7 +39,7 @@
     .mt-150{
         margin-top: 150px;
     }
-    .fileclick:hover,.active {
+    .fileclick:hover,.activefile {
         background: skyblue;
     }
 </style>
@@ -60,7 +57,7 @@
             $("#responsive-modal").modal('show')
         })
 
-        $("#upload-button").click(function () {
+        $("#upload-file").change(function () {
             const file = $("#upload-file")[0].files[0];
 
             if(file){
@@ -88,11 +85,11 @@
                             $("#upload-file").val('')
                         }, 1000);
                         filelistfetch()
-                        console.log(data)
+                       // console.log(data)
                     },
                     error: function(e)
                     {
-                        console.log(e)
+                       // console.log(e)
                     },
                     xhr: function () {
                         var xhr = $.ajaxSettings.xhr();
@@ -117,11 +114,57 @@
         $("body").on('click','.fileclick',function () {
             currentfile = this.dataset.id
             currActiveFile = $(this)
-            $(prevActiveFile).removeClass('active')
-            $(currActiveFile).addClass('active')
+            $(prevActiveFile).removeClass('activefile')
+            $(currActiveFile).addClass('activefile')
             prevActiveFile = $(this)
             previewFile()
         })
+
+
+        $("body").on('click','.delete-attachment',function () {
+
+            form = new FormData()
+            form.append('_token',`{{csrf_token()}}`)
+            form.append('_method','POST')
+            form.append('file',this.dataset.src.replace(`{{url('/')}}`,''))
+
+            $.ajax({
+                url: `{{route('attachment.delete',$task->id)}}`.replace(`{{url('/')}}`,''),
+                type: "POST",
+                data:  form,
+                contentType: false,
+                cache: false,
+                processData:false,
+                beforeSend : function()
+                {
+
+                },
+                success: function(data)
+                {
+                    if(data.status){
+                        filelistfetch()
+                    }
+                   console.log(data)
+                },
+                error: function(e)
+                {
+                    //console.log(e)
+                },
+                xhr: function () {
+                    var xhr = $.ajaxSettings.xhr();
+
+                    xhr.upload.onprogress = function (e) {
+                        // For uploads
+                        if (e.lengthComputable) {
+                            //console.log((e.loaded / e.total)*100);
+                        }
+                    };
+                    return xhr;
+                }
+            });
+        })
+
+
 
         function filelistfetch() {
 
@@ -141,11 +184,11 @@
                         fileslist = data.files
                         printFiles()
                     }
-                    console.log(data)
+                   // console.log(data)
                 },
                 error: function(e)
                 {
-                    console.log(e)
+                    //console.log(e)
                 },
                 xhr: function () {
                     var xhr = $.ajaxSettings.xhr();
@@ -162,9 +205,10 @@
         }
 
         function printFiles() {
+            defaultFilePreview()
             var html = '';
             fileslist.forEach(function (f,i) {
-                console.log(f)
+                //console.log(f)
                 html+= `<a class="row border-top p-2 fileclick" href="javascript:void(0)" data-src="${f.link}" data-id="${i}">${f.name}</a>`
             })
 
@@ -187,7 +231,8 @@
                             <img src="${previewlink}" alt="" class="img-thumbnail d-block img-responsive">
                             <div class="text-muted d-block">${file.date}</div>
                             <div class="d-block">${file.name}</div>
-                            <a href="${file.link}">Download Attachment</a>
+                            <a href="${file.link}" class="btn btn-success">DOWNLOAD</a>
+                            <a href="javascript:void(0)" data-src="${file.link}" class="btn btn-danger delete-attachment">DELETE</a>
                             `;
                 $("#responsive-modal .modal-body .container-fluid .filepreview").html(html)
 
