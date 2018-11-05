@@ -84,7 +84,7 @@ class TaskController extends Controller
             '#staff#'  => $user->name
         ];
 
-        $mailbody = $mailb ? strtr($mailb->body,$mailRarray) : '';
+        $mailbody = $mailb ? str_replace(array_keys($mailRarray),$mailRarray,$mailb->body) : '';
         $mailtitle = $mailb ? $mailb->title : 'You have new notification';
 
         $data = [
@@ -184,7 +184,7 @@ class TaskController extends Controller
             '#taskTitle#' => $task->title,
             '#staff#'  => User::find($task->user_id)->name
         ];
-        $mailbody = $mailb ? strtr($mailb->body,$mailRarray) : '';
+        $mailbody = $mailb ? str_replace(array_keys($mailRarray),$mailRarray,$mailb->body) : '';
         $mailtitle = $mailb? $mailb->title : 'Your have received new notification.';
 
         $data = [

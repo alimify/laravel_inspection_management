@@ -85,7 +85,7 @@ class HomeController extends Controller
 
         $mailb = Laraption::where('key','=','to.client.request.entry')->first();
         $mailb = json_decode($mailb ? $mailb->value : null);
-        $mailbody = $mailb ? strtr($mailb->body,$mailRarray) : '';
+        $mailbody = $mailb ? str_replace(array_keys($mailRarray),$mailRarray,$mailb->body) : '';
 
         $mailtitle = $mailb ? $mailb->title : 'Your request successfully received.';
 
