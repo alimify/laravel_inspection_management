@@ -194,6 +194,31 @@
             </div>
         </div>
 
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-body">
+                    <h4 class="card-title">Request Mail To Admin</h4>
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">
+
+                            <div class="form-group">
+                                <label for="request_to_admin_title">Title</label>
+                                <input type="text" class="form-control" id="request_to_admin_title" name="request_to_admin_title" value="{{$request_to_admin->title??''}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="request_to_admin_body">Body</label>
+                                <textarea class="form-control" name="request_to_admin_body" id="request_to_admin_body">{{$request_to_admin->body??''}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <div class="text-center">
         <input type="submit" class="btn btn-success col-4" name="submit" value="Submit">
         </div>

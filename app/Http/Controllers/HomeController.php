@@ -6,16 +6,15 @@ use App\Laraption;
 use App\Models\Client;
 use App\Models\RequestCategory;
 use App\Models\Task;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
+    private $rquest;
+
     public function __construct()
     {
         //$this->middleware('auth');
@@ -86,7 +85,8 @@ class HomeController extends Controller
 
 
         $mailRarray = [
-            '#client#' => $request->name
+            '#client#' => $request->name,
+            '#service#' => $rquest->Type->title??''
         ];
 
 
@@ -107,7 +107,8 @@ class HomeController extends Controller
        ];
 
        MailSender::send('mail.request',$data);
-
+       $this->rquest = $rquest;
+       $this->sentToAdmin('request',$rquest->id,route('admin.request.index'),'New Request','A new request from '.$rquest->name);
 
        return redirect()->back()->with('status','Request successfully received');
     }
@@ -149,4 +150,55 @@ class HomeController extends Controller
         return $redirectto;
 
     }
+
+
+
+
+    public function sentToAdmin($type,$nof,$route,$title,$description){
+
+        foreach (Role::find(1)->Users as $user){
+
+            $notification = new Notification();
+            $notification->type = $type;
+            $notification->nof  = $nof;
+            $notification->user_id = $user->id;
+            $notification->route = $route;
+            $notification->title = $title;
+            $notification->description = $description;
+            $notification->save();
+
+            $this->emailToAdmin($user);
+        }
+    }
+
+
+
+    private function emailToAdmin($user){
+
+        $mailRarray = [
+            '#admin#' => $user->name,
+            '#requestname#' => $this->rquest->name??'',
+            '#requestLink#'  => route('admin.request.index')??'',
+            '#service#'      => $this->rquest->Type->title??''
+        ];
+
+        $mailb = Laraption::where('key','=','to.admin.request.submit')->first();
+        $mailb = json_decode($mailb ? $mailb->value : null);
+        $mailbody = $mailb ? str_replace(array_keys($mailRarray),$mailRarray,$mailb->body) : '';
+
+        $mailtitle = $mailb ? $mailb->title : 'New request has been received';
+
+
+        $data = [
+            'to' => $user->email,
+            'name' => $user->name,
+            'subject' => $mailtitle,
+            'body' => $mailbody,
+            'file'  => false
+        ];
+
+        MailSender::send('mail.request',$data);
+
+    }
+
 }

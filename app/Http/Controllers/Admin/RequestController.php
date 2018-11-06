@@ -62,7 +62,8 @@ class RequestController extends Controller
         $request->save();
 
         $mailRarray                                             = [
-                                                                    '#client#'    => $request->name
+                                                                    '#client#'    => $request->name,
+                                                                    '#service#'  => $request->Type->title??''
                                                                   ];
 
 

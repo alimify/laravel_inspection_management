@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\MailSender;
 use App\Laraption;
 use App\Models\Category;
@@ -68,7 +69,6 @@ class TaskController extends Controller
         $task->user_id   = $request->staff;
         $task->save();
 
-
         /*Send Notification*/
         $this->sendToStaff('task',$task->id,$task->user_id,route('staff.task.show',$task->id),'New Task',$task->title);
 
@@ -119,9 +119,10 @@ class TaskController extends Controller
                 'read' => true
             ]);
 
+        /*Attachment*/
+        $attachment = (object) AttachmentController::attachmentC($task->id);
 
-
-        return response()->view('admin.task.show',compact('task','inspection'));
+        return response()->view('admin.task.show',compact('task','inspection','attachment'));
     }
 
     /**

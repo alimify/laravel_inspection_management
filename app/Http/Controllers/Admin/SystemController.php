@@ -106,9 +106,12 @@ class SystemController extends Controller
         $client_task_admin  = Laraption::where('key','=','to.admin.task.submit')->first();
         $client_task_admin = $client_task_admin ? json_decode($client_task_admin->value) : '';
 
+        $request_to_admin  = Laraption::where('key','=','to.admin.request.submit')->first();
+        $request_to_admin = $request_to_admin ? json_decode($request_to_admin->value) : '';
+
         return response()->view('admin.system.mail',compact('client_request','client_request_accept',
           'client_request_decline','staff_assign_task','staff_update_task','client_task_confirm',
-            'user_accountinfo','client_task_admin'));
+            'user_accountinfo','client_task_admin','request_to_admin'));
     }
 
     public function mailTemplateUpdate(Request $request){
@@ -229,6 +232,18 @@ class SystemController extends Controller
         ]);
 
         $tasktoadmin->save();
+
+
+        $request_to_admin = Laraption::firstOrNew([
+            'key' => 'to.admin.request.submit'
+        ]);
+
+        $request_to_admin->value = json_encode([
+            'title' => $request->request_to_admin_title,
+            'body'  => $request->request_to_admin_body
+        ]);
+
+        $request_to_admin->save();
 
 
         return redirect()->back()->with('status','Mail Template Updated..');

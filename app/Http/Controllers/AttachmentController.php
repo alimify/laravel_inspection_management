@@ -65,6 +65,25 @@ class AttachmentController extends Controller
         ]);
     }
 
+
+    public function attachmentCount($id){
+        $dir = $this->mainDir.$id;
+        $disk = Storage::disk('public');
+
+        $files = [];
+
+        foreach ($disk->allDirectories($dir) as $f){
+            $files[basename($f)] = count($disk->files($f));
+        }
+
+        return $files;
+    }
+
+    public static function attachmentC($id){
+        $it = new self();
+        return $it->attachmentCount($id);
+    }
+
     public function delete(Request $request,$id){
         if(!$request->file){
             return response()->json([

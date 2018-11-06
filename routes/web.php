@@ -70,6 +70,8 @@ Route::group(['as' => 'user.','prefix' => 'user','namespace' => 'User','middlewa
 
 
 Route::group(['middleware' => ['auth']],function() {
+    Route::get('attachment/count/{id}','AttachmentController@attachmentCount')->name('attachment.count');
+
     Route::get('attachment/list/{id}','AttachmentController@getList')->name('attachment.list');
     Route::post('attachment/upload/{id}','AttachmentController@upload')->name('attachment.upload');
     Route::post('attachment/delete/{id}','AttachmentController@delete')->name('attachment.delete');
