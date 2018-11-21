@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Laraption;
 use App\Models\Client;
+use App\Models\Notification;
 use App\Models\RequestCategory;
 use App\Models\Task;
 use App\Role;
