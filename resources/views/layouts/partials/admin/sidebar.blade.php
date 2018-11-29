@@ -30,9 +30,9 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.requestCategory.index')}}" aria-expanded="false">
+                    <a class="sidebar-link waves-effect waves-dark" href="{{route('admin.category.index')}}" aria-expanded="false">
                         <i class="fas fa-clipboard-list"></i>
-                        <span class="hide-menu">Request Type</span>
+                        <span class="hide-menu">Category</span>
                     </a>
                 </li>
 

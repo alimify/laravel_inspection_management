@@ -9,8 +9,11 @@
 
 
 @section('content')
+
+    @if($request->status == 1)
     <a href="{{route('admin.request.status',['id' => $request->id,'status' => 3])}}" class="btn btn-primary btn-success">Approve</a>
     <a href="{{route('admin.request.status',['id' => $request->id,'status' => 2])}}" class="btn btn-primary btn-danger">Decline</a>
+    @endif
 
     <a href="{{route('admin.request.index')}}" class="btn btn-primary btn-dark">Back</a>
 

@@ -64,7 +64,12 @@
     <script>
     $( document ).ready(function() {
 
-    $("#datatable").DataTable()
+    $("#datatable").DataTable({
+        "order": [[ 5, "desc" ]],
+        "columnDefs": [
+            { "searchable": false, "targets": 5 }
+        ]
+    })
 
     $(".delete-item").click(function () {
 

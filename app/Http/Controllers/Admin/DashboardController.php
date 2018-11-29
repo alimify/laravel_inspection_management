@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Client;
 use App\Models\Task;
 use App\Role;
+use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,7 +15,6 @@ class DashboardController extends Controller
     /*Dashboard index */
     public function index()
     {
-
         $tasks                                 = Task::where('status_id','!=',4)
                                                        ->get()
         ;

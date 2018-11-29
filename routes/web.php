@@ -30,7 +30,7 @@ Route::group(['as' => 'admin.','prefix' => 'admin','namespace' => 'Admin','middl
     Route::resource('user','UserController');
     Route::resource('task','TaskController');
     Route::resource('request','RequestController');
-    Route::resource('requestCategory','RequestCategoryController');
+    Route::resource('category','CategoryController');
 
     Route::get('inspection/edit/{id}','InspectionController@edit')->name('inspection.edit');
     Route::put('inspection/{id}','InspectionController@update')->name('inspection.update');

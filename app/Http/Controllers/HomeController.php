@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Laraption;
+use App\Models\Category;
 use App\Models\Client;
 use App\Models\Notification;
-use App\Models\RequestCategory;
 use App\Models\Task;
 use App\Role;
 use Illuminate\Http\Request;
@@ -59,7 +59,7 @@ class HomeController extends Controller
         }
 
        //var_dump(config('newsletter.lists.subscribers.id'));
-        $services = RequestCategory::all();
+        $services = Category::all();
 
         return response()->view('public.reqform',compact('services'));
     }

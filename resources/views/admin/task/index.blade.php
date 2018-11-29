@@ -63,7 +63,12 @@
     <script>
         $( document ).ready(function() {
 
-            $("#datatable").DataTable()
+            $("#datatable").DataTable({
+                "order": [[ 6, "desc" ]],
+                "columnDefs": [
+                    { "searchable": false, "targets": 6 }
+                ]
+            })
         })
     </script>
 @endpush

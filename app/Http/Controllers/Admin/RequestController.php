@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\MailSender;
 use App\Laraption;
 use App\Models\Client;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Newsletter;
@@ -68,13 +69,18 @@ class RequestController extends Controller
 
 
         if($request->status == 3){
-            $client                                             = new Client();
+
+            $client                                             = Client::firstOrNew([
+                'email'                                         => $request->email
+            ]);
             $client->name                                       = $request->name;
-            $client->email                                      = $request->email;
+            //$client->email                                      = $request->email;
             $client->phone                                      = $request->phone;
             $client->address                                    = $request->address;
             $client->descriptions                               = $request->message;
             $client->save();
+
+            $this->addToTask($request,$client);
 
             Newsletter::subscribeOrUpdate($client->email,[ 'NAME' => $client->name ]);
 
@@ -98,7 +104,6 @@ class RequestController extends Controller
             ;
 
             MailSender::send('mail.request',$data);
-
 
             return redirect()->route('admin.client.edit',$client->id)
                               ->with('status','Client Successfully Added..')
@@ -134,5 +139,19 @@ class RequestController extends Controller
         ;
     }
 
+
+    public function addToTask($data,$client){
+
+        $task = new Task();
+        $task->title = 'New Inspection For '.$data->name;
+        $task->description = $data->message;
+        $task->note     = '';
+        $task->address = $data->address;
+        $task->client_id = $client->id;
+        $task->category_id = 1;
+        $task->user_id   = 0;
+        $task->save();
+
+    }
 
 }

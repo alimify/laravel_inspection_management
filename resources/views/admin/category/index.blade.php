@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Request Category')
+@section('title','Category')
 
 @push('css')
 
@@ -10,7 +10,7 @@
 
 
 @section('content')
-    <a href="{{route('admin.requestCategory.create')}}" class="btn btn-primary btn-success">Add</a>
+    <a href="{{route('admin.category.create')}}" class="btn btn-primary btn-success">Add</a>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -32,8 +32,8 @@
                                     <td>{{$service->title}}</td>
                                     <td>{{$service->created_at}}</td>
                                     <td>
-                                        <a href="{{route('admin.requestCategory.edit',$service->id)}}"><i class="fas fa-edit"></i></a>
-                                        <a href="javascript:void(0)" class="delete-item" data-id="{{$service->id}}"><i class="fa fa-trash"></i> </a>
+                                        <a href="{{route('admin.category.edit',$service->id)}}"><i class="fas fa-edit"></i></a>
+                                        <!--<a href="javascript:void(0)" class="delete-item" data-id="{{$service->id}}"><i class="fa fa-trash"></i> </a>-->
                                     </td>
                                 </tr>
                             @endforeach
@@ -54,12 +54,17 @@
     <script>
         $( document ).ready(function() {
 
-            $("#datatable").DataTable()
+            $("#datatable").DataTable({
+                "order": [[ 1, "desc" ]],
+                "columnDefs": [
+                    { "searchable": false, "targets": 1 }
+                ]
+            })
 
             $(".delete-item").click(function () {
 
                 let deleteForm = document.createElement('form'),
-                    currentURL = `{{route('admin.requestCategory.destroy','deleteid')}}`,
+                    currentURL = `{{route('admin.category.destroy','deleteid')}}`,
                     deleteURL = currentURL.replace('deleteid',this.dataset.id),
                     csrfInput = document.createElement('input'),
                     methodInput = document.createElement('input')

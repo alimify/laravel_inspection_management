@@ -37,7 +37,7 @@
                                     <td>{{$request->phone}}</td>
                                     <td>{{$request->email}}</td>
                                     <td>{{$request->address}}</td>
-                                    <td>{{$request->Type->title??''}}</td>
+                                    <td>{{$request->Category->title??''}}</td>
                                     <td>
                                         @if($request->status == 1)
                                             <span class="btn btn-warning">Waiting</span>
@@ -70,7 +70,12 @@
 
     <script>
     $( document ).ready(function() {
-        $("#datatable").DataTable()
+        $("#datatable").DataTable({
+            "order": [[ 6, "desc" ]],
+            "columnDefs": [
+                { "searchable": false, "targets": 6 }
+            ]
+        })
     })
-</script>
+    </script>
 @endpush
