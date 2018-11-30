@@ -17,6 +17,11 @@ class CategoriesTableSeeder extends Seeder
                 'id'         => 1,
                 'title'      => 'Unit Inspection',
                 'form'       => 'formOne'
+            ],
+            [
+                'id'         => 2,
+                'title'      => 'Default Inspection',
+                'form'       => 'defaultForm'
             ]
         ]);
     }

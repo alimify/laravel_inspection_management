@@ -31,7 +31,8 @@
     </div>
 
 
-    @include('staff.inspection.form.'.$task->category_id)
+    @includeIf('staff.inspection.form.'.$task->category_id)
+    @includeWhen(!View::exists('staff.inspection.form.'.$task->category_id),'staff.inspection.form.default')
 
 @endsection
 

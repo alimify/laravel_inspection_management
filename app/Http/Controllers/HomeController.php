@@ -85,6 +85,10 @@ class HomeController extends Controller
        $rquest->save();
 
 
+       $this->rquest = $rquest;
+       $this->sentToAdmin('request',$rquest->id,route('admin.request.show',$rquest->id),'New Request','A new request from '.$rquest->name);
+
+
         $mailRarray = [
             '#client#' => $request->name,
             '#service#' => $rquest->Type->title??''
@@ -100,16 +104,14 @@ class HomeController extends Controller
 
 
         $data = [
-           'to' => $rquest->email,
-           'name' => $rquest->name,
-           'subject' => $mailtitle,
-           'body' => $mailbody,
-           'file'  => false
-       ];
+            'to' => $rquest->email,
+            'name' => $rquest->name,
+            'subject' => $mailtitle,
+            'body' => $mailbody,
+            'file'  => false
+        ];
 
-       MailSender::send('mail.request',$data);
-       $this->rquest = $rquest;
-       $this->sentToAdmin('request',$rquest->id,route('admin.request.index'),'New Request','A new request from '.$rquest->name);
+        MailSender::send('mail.request',$data);
 
        return redirect()->back()->with('status','Request successfully received');
     }

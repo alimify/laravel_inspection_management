@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\MailSender;
 use App\Laraption;
 use App\Models\Client;
+use App\Models\Notification;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Newsletter;
 
 class RequestController extends Controller
@@ -35,6 +37,13 @@ class RequestController extends Controller
     public function show($id)
     {
         $request                                               = \App\Models\Request::find($id);
+
+        Notification::where('nof',$request->id)
+            ->where('type','request')
+            ->where('user_id',Auth::id())
+            ->update([
+                'read' => true
+            ]);
 
         return response()->view('admin.request.show',compact('request'));
     }

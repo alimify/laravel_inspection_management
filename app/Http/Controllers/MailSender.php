@@ -14,6 +14,9 @@ class MailSender extends Controller
           $mail->from(Config::get('site.email'),Config::get('site.emailname'));
           $mail->to($data['to']);
           $mail->subject($data['subject']);
+          if($data['file']){
+              $mail->attach($data['file'],['as' => 'attachment']);
+          }
       });
 
     }

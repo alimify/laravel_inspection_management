@@ -79,17 +79,18 @@
                     },
                     success: function(data)
                     {
+                         //console.log(data)
                         setTimeout(function () {
                             $('#upload-progress-bar').css('display','none')
                             $('#upload-progress-bar').css('width','0%')
                             $("#upload-file").val('')
                         }, 1000);
                         filelistfetch()
-                       // console.log(data)
+
                     },
                     error: function(e)
                     {
-                       // console.log(e)
+                       //console.log(e)
                     },
                     xhr: function () {
                         var xhr = $.ajaxSettings.xhr();

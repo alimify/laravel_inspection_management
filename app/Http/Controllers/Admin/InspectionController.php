@@ -8,6 +8,7 @@ use App\Models\Client;
 use App\Models\Inspection;
 use App\Models\Task;
 use App\User;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +17,6 @@ class InspectionController extends Controller
 
     /* Edit */
     public function edit($id){
-
 
         $task                                        = Task::find($id);
 
@@ -28,6 +28,8 @@ class InspectionController extends Controller
     public function sendToClient($id){
 
         $task                                        = Task::find($id);
+
+        PDF::loadView('PDF.taskToClient',['task' => $task,'inspection' => json_decode($task->Inspection->data??'')])->save('storage/pdf/sendtoclient'.$task->id.'.pdf');
 
         //Send Email Notification
         $user                                        = User::find($task->user_id);
@@ -62,7 +64,7 @@ class InspectionController extends Controller
                                                          'name'        => $client->name,
                                                          'subject'     => $mailtitle,
                                                          'body'        => $mailbody,
-                                                         'file'        => false
+                                                         'file'        => 'storage/pdf/sendtoclient'.$task->id.'.pdf'
                                                         ];
 
         MailSender::send('mail.task',$data);
@@ -75,7 +77,7 @@ class InspectionController extends Controller
     public function update(Request $request,$id){
 
         $task                                        = Task::find($id);
-        $form                                        = $task->Category->form;
+        $form                                        = $task->Category->form??'defaultForm';
         $result                                      = $this->$form($request,$task);
 
         return $result ? redirect()->back()
@@ -85,12 +87,35 @@ class InspectionController extends Controller
     }
 
 
+
+    /*form*/
+    public function defaultForm($request,$task){
+        $inspection                                  = Inspection::firstOrNew([
+                                                        'task_id'         => $task->id
+        ]);
+
+        $data =  [
+            'status'                                 => $request->status == 1 ? true : false,
+            'comment'                                => $request->comment
+        ];
+
+        $inspection->data                            = json_encode($data);
+        $inspection->save();
+
+        $task->inspection_id                         = $inspection->id;
+        $task->status_id                             = 2;
+        $task->save();
+
+        return redirect()->back()
+                          ->with('status','Form Submitted Successfully')
+        ;
+    }
+
     public function formOne($request,$task){
 
         $inspection                                  = Inspection::firstOrNew([
-                                                         'task_id'        => $task->id]
-        )
-        ;
+                                                         'task_id'        => $task->id
+        ]);
 
 
         $data = [
@@ -145,4 +170,8 @@ class InspectionController extends Controller
                           ->with('status','Form Submitted Successfully.')
         ;
     }
+
+
+    /*PDF*/
+
 }

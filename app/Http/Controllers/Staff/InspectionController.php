@@ -19,10 +19,37 @@ class InspectionController extends Controller
 
     public function submitForm(Request $request,Task $task){
 
-        $form = $task->Category->form;
+        $form = $task->Category->form??'defaultForm';
         $result  = $this->$form($request,$task);
 
         return $result ? redirect()->back()->with('status','Form Submitted Successfully.') : redirect()->back();
+    }
+
+
+    public function defaultForm($request,$task){
+        $inspection                                  = Inspection::firstOrNew([
+            'task_id'         => $task->id
+        ]);
+
+        $data =  [
+            'status'                                 => $request->status == 1 ? true : false,
+            'comment'                                => $request->comment
+        ];
+
+        $inspection->data                            = json_encode($data);
+        $inspection->save();
+
+        $task->inspection_id = $inspection->id;
+        $task->status_id = 2;
+        $task->save();
+
+        $this->task = $task;
+        $this->sentToAdmin('task',$task->id,route('admin.task.show',$task->id),'Task Submitted',$task->title);
+
+
+        return redirect()->back()
+            ->with('status','Form Submitted Successfully')
+        ;
     }
 
     public function formOne($request,$task){

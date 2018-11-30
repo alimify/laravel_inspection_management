@@ -34,7 +34,7 @@
                                 <span class="btn btn-warning">Waiting</span>
                             @elseif($request->status == 2)
                                 <span class="btn btn-danger">Decline</span>
-                            @elseif($request->status == 1)
+                            @elseif($request->status == 3)
                                 <span class="btn btn-success">Approved</span>
                             @endif
 

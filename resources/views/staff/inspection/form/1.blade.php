@@ -200,6 +200,9 @@
                             <div class="form-group pb-2">
                                 <label for="title" class="d-block">SMOKE DETECTOR</label>
                                 <textarea class="form-control" rows="1" placeholder="WHAT KIND OF INSPECTION HERE ?" name="smoke_detector">{{$inspection && $inspection->smoke_detector ? $inspection->smoke_detector:''}}</textarea>
+                                <div class="row">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="smoke_detector">
+                                </div>
                             </div>
                         </div>
 
@@ -210,21 +213,32 @@
                             <div class="form-group pb-2">
                                 <label for="title" class="d-block">REFIGERATOR</label>
                                 <textarea class="form-control" rows="1" placeholder="WHAT KIND OF INSPECTION HERE ?" name="major_refigerator">{{$inspection && $inspection->major_refigerator ? $inspection->major_refigerator:''}}</textarea>
-
+                                <div class="row">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="major_refigerator">
+                                </div>
                             </div>
                             <div class="form-group pb-2">
                                 <label for="title" class="d-block">STOVE</label>
                                 <textarea class="form-control" rows="1" placeholder="WHAT KIND OF INSPECTION HERE ?" name="major_stove">{{$inspection && $inspection->major_stove ? $inspection->major_stove:''}}</textarea>
+                                <div class="row">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="major_stove">
+                                </div>
                             </div>
 
                             <div class="form-group pb-2">
                                 <label for="title" class="d-block">WASHER/DRYER UNITS </label>
                                 <textarea class="form-control" rows="1" placeholder="WHAT KIND OF INSPECTION HERE ?" name="major_washer">{{$inspection && $inspection->major_washer ? $inspection->major_washer:''}}</textarea>
+                                <div class="row">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="major_washer">
+                                </div>
                             </div>
 
                             <div class="form-group pb-2">
                                 <label for="title" class="d-block">BASEBOARD</label>
                                 <textarea class="form-control" rows="1" placeholder="WHAT KIND OF INSPECTION HERE ?" name="major_baseboard">{{$inspection && $inspection->major_baseboard ? $inspection->major_baseboard:''}}</textarea>
+                                <div class="row">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="major_baseboard">
+                                </div>
                             </div>
 
 
@@ -249,6 +263,9 @@
                             <h4>OBSERVATIONS:</h4>
                             <div class="form-group pb-2">
                                 <textarea class="form-control" name="observation">{{$inspection && $inspection->observation ? $inspection->observation:''}}</textarea>
+                                <div class="row">
+                                    <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="observation">
+                                </div>
                             </div>
 
                             <div class="text-center">

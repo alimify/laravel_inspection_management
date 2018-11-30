@@ -11,7 +11,8 @@
 @section('content')
 
     @if($inspection)
-    @include('admin.inspection.edit.'.$task->category_id)
+     @includeIf('admin.inspection.edit.'.$task->category_id)
+     @includeWhen(!View::exists('admin.inspection.edit.'.$task->category_id),'admin.inspection.edit.default')
     @else
         <div class="text-warning text-center">Nothing available</div>
     @endif

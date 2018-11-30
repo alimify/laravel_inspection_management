@@ -198,6 +198,9 @@
                         <div class="form-group pb-2">
                             <label for="title" class="d-block">SMOKE DETECTOR</label>
                             {{$inspection->smoke_detector??''}}
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="smoke_detector" {{!($attachment->smoke_detector??false) ? 'disabled' : ''}}>
+                            </div>
                         </div>
                     </div>
 
@@ -208,21 +211,32 @@
                         <div class="form-group pb-2">
                             <label for="title" class="d-block">REFIGERATOR</label>
                             {{$inspection->major_refigerator??''}}
-
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="major_refigerator" {{!($attachment->major_refigerator??false) ? 'disabled' : ''}}>
+                            </div>
                         </div>
                         <div class="form-group pb-2">
                             <label for="title" class="d-block">STOVE</label>
                             {{$inspection->major_stove??''}}
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="major_stove" {{!($attachment->major_stove??false) ? 'disabled' : ''}}>
+                            </div>
                         </div>
 
                         <div class="form-group pb-2">
                             <label for="title" class="d-block">WASHER/DRYER UNITS </label>
                             {{$inspection->major_washer??''}}
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="major_washer" {{!($attachment->major_washer??false) ? 'disabled' : ''}}>
+                            </div>
                         </div>
 
                         <div class="form-group pb-2">
                             <label for="title" class="d-block">BASEBOARD</label>
                             {{$inspection->major_baseboard??''}}
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="major_baseboard" {{!($attachment->major_baseboard??false) ? 'disabled' : ''}}>
+                            </div>
                         </div>
 
 
@@ -248,6 +262,9 @@
                         <h4>OBSERVATIONS:</h4>
                         <div class="form-group pb-2">
                             {{$inspection->observation??''}}
+                            <div class="row">
+                                <input class="btn btn-dark attachment-modal" value="ATTACHMENT" type="button" data-src="observation" {{!($attachment->observation??false) ? 'disabled' : ''}}>
+                            </div>
                         </div>
 
 

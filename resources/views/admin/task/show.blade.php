@@ -36,7 +36,8 @@
 
     @if($inspection)
 
-        @include('admin.inspection.show.'.$task->category_id)
+        @includeIf('admin.inspection.show.'.$task->category_id)
+        @includeWhen(!View::exists('admin.inspection.show.'.$task->category_id),'admin.inspection.show.default')
 
     @endif
 
