@@ -56,7 +56,7 @@ class AttachmentController extends Controller
         }
 
 
-        $dir = 'pdfthumb/'.$this->mainDir.$id.'/'.$dirs.'/';
+        $dir = ''.$this->mainDir.$id.'/'.$dirs.'/';
 
         if(!Storage::disk('public')->exists($dir)){
             Storage::disk('public')->makeDirectory($dir);
@@ -64,14 +64,19 @@ class AttachmentController extends Controller
 
         $disk = Storage::disk('public');
         $files  = [];
+        $extarray = ['jpeg','jpg','png','gif'];
+
         foreach ($disk->allFiles($dir) as $file){
-            $files[] = [
-                'link' => 'storage/'.$file,
-                'name' => basename($file),
-                'date' => date(DATE_RFC2822, $disk->lastModified($file)),
-                'size' => $disk->size($file),
-                'ext'  => strtolower(File::extension($file))
-            ];
+            $itext = strtolower(File::extension($file));
+            if(in_array($itext,$extarray)) {
+                $files[] = [
+                    'link' => 'storage/' . $file,
+                    'name' => basename($file),
+                    'date' => date(DATE_RFC2822, $disk->lastModified($file)),
+                    'size' => $disk->size($file),
+                    'ext' => $itext
+                ];
+            }
         }
         return [
             'status' => true,
@@ -95,14 +100,14 @@ class AttachmentController extends Controller
             Storage::disk('public')->makeDirectory($dir);
         }
 
-        if(substr($file->getMimeType(), 0, 5) == 'image'){
+        /*if(substr($file->getMimeType(), 0, 5) == 'image'){
             $pdfthumb = 'pdfthumb/'.$dir;
             if(!Storage::disk('public')->exists($pdfthumb)){
                 Storage::disk('public')->makeDirectory($pdfthumb);
             }
             $pdfthumbImage = Image::make($file)->resize(150,150)->save('tmp/tmp'.$file->getClientOriginalExtension());
             Storage::disk('public')->put($pdfthumb.'/'.$file->getClientOriginalName(),$pdfthumbImage);
-        }
+        }*/
 
         $status = $file->storeAs($dir,$file->getClientOriginalName(),'public');
 

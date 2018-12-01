@@ -15,7 +15,7 @@ class MailSender extends Controller
           $mail->to($data['to']);
           $mail->subject($data['subject']);
           if($data['file']){
-              $mail->attach($data['file'],['as' => 'attachment']);
+              $mail->attach($data['file']);
           }
       });
 

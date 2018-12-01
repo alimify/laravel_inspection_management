@@ -39,7 +39,7 @@
     }
     .description .title-description span {
         font-weight: bold;
-        display: block!important;
+        display: inline!important;
     }
 
     .description .sub-description {

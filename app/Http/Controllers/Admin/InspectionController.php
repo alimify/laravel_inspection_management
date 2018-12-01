@@ -29,7 +29,7 @@ class InspectionController extends Controller
 
         $task                                        = Task::find($id);
 
-        PDF::loadView('PDF.taskToClient',['task' => $task,'inspection' => json_decode($task->Inspection->data??'')])->save('storage/pdf/sendtoclient'.$task->id.'.pdf');
+        PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('PDF.taskToClient',['task' => $task,'inspection' => json_decode($task->Inspection->data??'')])->save('storage/pdf/sendtoclient'.$task->id.'.pdf');
 
         //Send Email Notification
         $user                                        = User::find($task->user_id);
@@ -53,7 +53,8 @@ class InspectionController extends Controller
             '#staff#'                                => $user->name,
             '#client#'                               => $client->name,
             '#propertyaddress#'                      => $task->address,
-            '#inspectiondate#'                       => $task->Inspection->created_at??''
+            '#inspectiondate#'                       => $task->Inspection->created_at??'',
+            '#attachmentLink#'                       => asset('storage/pdf/sendtoclient'.$task->id.'.pdf')
         ];
 
         $mailbody                                    = $mailb ? str_replace(array_keys($mailRarray),$mailRarray,$mailb->body) : '';
@@ -64,7 +65,7 @@ class InspectionController extends Controller
                                                          'name'        => $client->name,
                                                          'subject'     => $mailtitle,
                                                          'body'        => $mailbody,
-                                                         'file'        => 'storage/pdf/sendtoclient'.$task->id.'.pdf'
+                                                         'file'        => false
                                                         ];
 
         MailSender::send('mail.task',$data);
