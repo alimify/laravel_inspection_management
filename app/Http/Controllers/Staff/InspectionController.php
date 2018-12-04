@@ -145,8 +145,8 @@ class InspectionController extends Controller
 
          $mailRarray = [
              '#admin#' => $user->name,
-             '#taskTitle' => $this->task->title,
-             '#taskLink'  => route('admin.task.show',$this->task->id)
+             '#taskTitle#' => $this->task->title,
+             '#taskLink#'  => route('admin.task.show',$this->task->id)
          ];
 
          $mailb = Laraption::where('key','=','to.admin.task.submit')->first();

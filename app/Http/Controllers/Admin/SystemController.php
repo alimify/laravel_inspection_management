@@ -276,4 +276,11 @@ class SystemController extends Controller
 
     }
 
+
+
+    public function clientReportPDFLayout(Request $request){
+
+    }
+
+
 }

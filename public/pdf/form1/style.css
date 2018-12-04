@@ -1,0 +1,153 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family:'Rubik', sans-serif;
+	font-size: 14px;
+	line-height: 22px;
+	color: #000000;
+}
+
+img {
+	max-width: 100%;
+	min-width: 100%;
+}
+
+.fix {
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: #222222;
+}
+p {
+    font-size: 16px;
+    line-height: 22px;
+}
+ul li{
+	list-style: none;
+	margin-left: 20px;
+}
+h2{
+	color: #2ABDF2;
+	font-weight: 700;
+}
+
+.logo img {
+    min-width: 30%;
+    padding-top: 80px;
+}
+.address-area {
+    padding-top: 40px;
+    padding-bottom: 50px;
+}
+.address-area h3 {
+    font-weight: 700;
+}
+.table-content {
+    font-size: 16px;
+}
+.table-content-up p {
+    margin-bottom: 50px;
+}
+.inspected h2 {
+    margin-bottom: 25px;
+}
+.inspect-area {
+    margin: 40px 0 20px 0;
+}
+.inspect-area h4 {
+    color: #000;
+    font-weight: 700;
+    font-size: 23px;
+    margin-bottom: 25px;
+}
+.inspect-area ul {
+	margin-left: 15px;
+    font-size: 18px;
+}
+.inspect-area ul li h5 {
+    font-size: 18px;
+    font-weight: 600;
+}
+.inspect-area ul li .single-item {
+    margin-left: 30px;
+}
+.single-item {
+    margin-top: 10px;
+    margin-bottom:35px;
+}
+.single-item>p:first-child {
+    font-weight: 600;
+}
+.single-item p {
+    margin: 25px 0 15px 0;
+}
+.yes-no {
+	margin-bottom: 15px;
+}
+
+.yes-no .active {
+    background: #9cec9c;
+    padding: 10px 15px;
+    border: 0px solid;
+    border-radius: 10px;
+    margin-right: 10px;
+        font-size: 16px;
+}
+
+.yes-no .no-active {
+    background: rgba(241, 7, 7, 0.4);
+    padding: 10px 15px;
+    border: 0px solid;
+    border-radius: 10px;
+        font-size: 16px;
+   
+}
+.intro-area p a {
+    color: #2ABDF2;
+    text-decoration: underline;
+}
+.mt0{
+    margin-top: 0;
+}
+.ftitle {
+    font-size: 24px;
+    font-weight: 700;
+}
+.inspect-area h4 {
+    color: #000;
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+.inspect-area ul li h5 {
+    font-size: 18px;
+    font-weight: 400;
+}
+.single-item p {
+    margin: 15px 0 15px 0;
+    font-weight: 300 !important;
+    font-size: 16px;
+}
+.yes-no {
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+.yes-no > span {
+    display: inline-block;
+    border-radius: 3px !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    width: 60px;
+    text-align: center;
+    padding: 5px 0 !important;
+}
+.table-content-up p {
+    margin-bottom: 50px;
+    font-weight: 300;
+    font-size: 14px;
+}

@@ -95,7 +95,7 @@
             <!-- ============================================================== -->
             <footer class="footer text-center">
                 Developed by
-                <a href="javascript:void(0)">Phafex</a>.
+                <a href="mailto:activefaruk7@gmail.com">Abdullah Al Faruk</a>.
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
